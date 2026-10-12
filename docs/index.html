@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wolfpack Winter Classic</title>
+<meta name="description" content="U9 Tier 2 and Tier 3 minor hockey tournament, December 18–20, 2026 in Dickson, Alberta.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="tournwolf-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+[hidden]{display:none!important}img{max-width:100%}body{margin:0}
+/* Layout: center-ice hero ending on a red line, then a single 72rem column of event info, entry form, and the organizer bench. */
+:root{
+  --ice:#F4F6F8; --surface:#FFFFFF; --ink:#111216; --muted:#596070; --line:#D9DEE5; --chip:#EBEEF2;
+  --red:#C8102E; --red-hover:#A80D26; --red-text:#B00E28; --on-red:#FFFFFF;
+  --hero-bg:#0D0E11; --hero-fg:#F4F6F8; --hero-muted:#A9AFBA;
+  --ok:#1C7347; --ok-bg:#E3F3EA; --warn:#9A5800; --warn-bg:#FBEFD9; --bad:#B3261E; --bad-bg:#FBE6E4; --info:#2A4E8A; --info-bg:#E5ECF8;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --radius:6px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ice:#0B0C0F; --surface:#15171C; --ink:#EDF0F3; --muted:#9BA2AE; --line:#2A2E37; --chip:#1E2128;
+  --red:#D92640; --red-hover:#EE3E57; --red-text:#FF7083; --on-red:#FFFFFF;
+  --hero-bg:#060708; --hero-fg:#F4F6F8; --hero-muted:#A9AFBA;
+  --ok:#5DCB93; --ok-bg:#12291D; --warn:#E9AB4A; --warn-bg:#2E2210; --bad:#FF7A70; --bad-bg:#331614; --info:#8FB0EC; --info-bg:#16213A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ice:#0B0C0F; --surface:#15171C; --ink:#EDF0F3; --muted:#9BA2AE; --line:#2A2E37; --chip:#1E2128;
+  --red:#D92640; --red-hover:#EE3E57; --red-text:#FF7083; --on-red:#FFFFFF;
+  --hero-bg:#060708; --hero-fg:#F4F6F8; --hero-muted:#A9AFBA;
+  --ok:#5DCB93; --ok-bg:#12291D; --warn:#E9AB4A; --warn-bg:#2E2210; --bad:#FF7A70; --bad-bg:#331614; --info:#8FB0EC; --info-bg:#16213A;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--ice);color:var(--ink);font:400 1.0625rem/1.55 var(--body);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);line-height:1;margin:0;text-wrap:balance;letter-spacing:.01em}
+h2{font-size:clamp(2rem,4.5vw,2.9rem);font-weight:900;text-transform:uppercase}
+h3{font-size:1.45rem;font-weight:800;text-transform:uppercase}
+p{margin:0}
+a{color:var(--red-text)}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.wrap{max-width:72rem;margin:0 auto;padding-inline:clamp(16px,4vw,32px)}
+.eyebrow{font:700 .78rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--red-text)}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* preview banner */
+.preview{background:var(--warn-bg);color:var(--warn);font-size:.9rem;padding-block:.55rem;border-bottom:1px solid var(--line)}
+.preview .wrap{display:flex;gap:.5rem 1rem;flex-wrap:wrap;align-items:center}
+
+/* top bar */
+.topbar{background:var(--hero-bg);color:var(--hero-fg)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.9rem}
+.brand{display:flex;align-items:center;gap:.65rem;color:inherit;text-decoration:none;font:800 1.15rem/1 var(--display);text-transform:uppercase;letter-spacing:.04em}
+.puck{width:40px;height:40px;flex:none;object-fit:contain}
+.hero-side{display:grid;gap:1.25rem;justify-items:center}
+.hero-wolf{width:min(100%,19rem);height:auto;filter:drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 18px 40px rgba(200,16,46,.28));animation:wolfIn .7s cubic-bezier(.2,.8,.2,1) both}
+.hero-side .board{width:100%}
+@keyframes wolfIn{from{transform:translateY(14px) scale(.96);opacity:.4}to{transform:none;opacity:1}}
+.topnav{display:flex;gap:1.25rem;align-items:center;font-weight:600;font-size:.95rem}
+.topnav a{color:var(--hero-fg);text-decoration:none;opacity:.85}
+.topnav a:hover{opacity:1}
+.topnav .btn{opacity:1}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;font:700 .95rem/1 var(--body);letter-spacing:.04em;text-transform:uppercase;border:2px solid transparent;border-radius:var(--radius);padding:.8rem 1.15rem;cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s,color .15s}
+.btn-red{background:var(--red);color:var(--on-red)}
+.btn-red:hover{background:var(--red-hover)}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.btn-ghost-light{background:transparent;color:var(--hero-fg);border-color:rgba(255,255,255,.35)}
+.btn-ghost-light:hover{border-color:var(--hero-fg)}
+.btn-sm{padding:.5rem .75rem;font-size:.8rem}
+.btn[disabled]{opacity:.55;cursor:wait}
+
+/* hero */
+.hero{position:relative;background:var(--hero-bg);color:var(--hero-fg);overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .faceoff{position:absolute;right:-6rem;top:50%;transform:translateY(-50%);width:34rem;max-width:none;opacity:.14;pointer-events:none}
+.hero-inner{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:2.5rem;align-items:end;padding-block:clamp(3rem,8vw,5.5rem) clamp(2.5rem,6vw,4rem)}
+.hero h1{font-size:clamp(3.6rem,11vw,8.4rem);font-weight:900;text-transform:uppercase;line-height:.86;letter-spacing:-.005em;margin-top:1rem}
+.hero h1 .w{color:var(--red)}
+.hero .eyebrow{color:var(--hero-muted)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.tag{font:700 .8rem/1 var(--body);letter-spacing:.1em;text-transform:uppercase;padding:.5rem .7rem;border:1px solid rgba(255,255,255,.3);border-radius:999px}
+.tag.red{background:var(--red);border-color:var(--red);color:var(--on-red)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.board{border:1px solid rgba(255,255,255,.18);border-radius:var(--radius);background:rgba(255,255,255,.04);padding:1.25rem 1.4rem;display:grid;gap:1rem}
+.board-row{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.85rem}
+.board-row:last-child{border-bottom:0;padding-bottom:0}
+.board-label{font:600 .78rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted)}
+.board-val{font:800 1.35rem/1.1 var(--display);text-transform:uppercase;text-align:right}
+.count{font:900 clamp(3.6rem,8vw,5rem)/.9 var(--display);color:var(--hero-fg);font-variant-numeric:tabular-nums}
+.redline{height:14px;background:linear-gradient(var(--red) 0 0) center/100% 6px no-repeat,var(--hero-fg)}
+
+/* sections */
+section.block{padding-block:clamp(3rem,7vw,5rem)}
+.section-head{display:grid;gap:.75rem;margin-bottom:2rem;max-width:42rem}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.fact{background:var(--surface);padding:1.25rem;display:grid;gap:.4rem;align-content:start;min-width:0}
+.fact .k{font:600 .78rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.fact .v{font:800 1.5rem/1.1 var(--display);text-transform:uppercase}
+.fact .s{font-size:.95rem;color:var(--muted)}
+
+.divisions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;margin-top:1.25rem}
+.div-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:.6rem}
+.div-card .tier{font:900 3.2rem/.9 var(--display);text-transform:uppercase}
+.div-card .tier span{color:var(--red-text)}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;counter-reset:step}
+.steps li{counter-increment:step;display:grid;gap:.5rem;align-content:start;padding-top:1rem;border-top:3px solid var(--ink)}
+.steps li::before{content:counter(step);font:900 2.4rem/1 var(--display);color:var(--red-text)}
+.steps li:last-child{border-top-color:var(--red)}
+.steps p{color:var(--muted);font-size:.98rem}
+
+/* forms */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(1.25rem,3vw,2rem)}
+.apply-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.form{display:grid;gap:1.75rem}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:1rem;min-width:0}
+legend{font:800 1.2rem/1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin-bottom:1rem;padding:0}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.field{display:grid;gap:.35rem;min-width:0}
+label,.label{font-weight:600;font-size:.92rem}
+.req{color:var(--red-text)}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=password],select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--ice);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .8rem;width:100%;min-width:0}
+textarea{min-height:6rem;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px color-mix(in srgb,var(--red) 22%,transparent)}
+.choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.choice label{display:flex;gap:.7rem;align-items:center;border:1px solid var(--line);border-radius:var(--radius);padding:.85rem 1rem;cursor:pointer;background:var(--ice)}
+.choice label:has(input:checked){border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}
+.choice input{accent-color:var(--red);width:1.1rem;height:1.1rem}
+.choice .t{font:800 1.25rem/1 var(--display);text-transform:uppercase}
+.check{display:flex;gap:.65rem;align-items:flex-start;font-weight:500}
+.check input{accent-color:var(--red);width:1.1rem;height:1.1rem;margin-top:.2rem;flex:none}
+.hint{font-size:.88rem;color:var(--muted)}
+.error{color:var(--bad);font-weight:600;font-size:.95rem}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.success{display:grid;gap:1rem;justify-items:start}
+.success .big{font:900 2.4rem/1 var(--display);text-transform:uppercase}
+
+/* roster */
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th{font:600 .75rem/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.65rem .6rem;background:var(--chip);white-space:nowrap}
+td{padding:.35rem .6rem;border-top:1px solid var(--line);vertical-align:middle}
+td input,td select{padding:.5rem .55rem;font-size:.95rem}
+td.idx{color:var(--muted);font-variant-numeric:tabular-nums;width:2.5rem}
+.w-num{width:6rem}.w-year{width:7rem}
+.deadline-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;border-left:4px solid var(--red);background:var(--surface);padding:1rem 1.25rem;border-radius:var(--radius)}
+.pay-box{display:grid;gap:.6rem;background:var(--ice);border:1px dashed var(--line);border-radius:var(--radius);padding:1rem 1.15rem}
+.copy-line{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.copy-line code{font:600 1rem/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--surface);border:1px solid var(--line);padding:.35rem .5rem;border-radius:4px;user-select:all;overflow-wrap:anywhere}
+
+/* admin */
+.admin-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.5rem}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.75rem;margin-bottom:1.5rem}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem 1rem;display:grid;gap:.25rem}
+.stat .n{font:900 2.2rem/1 var(--display);font-variant-numeric:tabular-nums}
+.stat .k{font:600 .74rem/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.stat.alert .n{color:var(--bad)}
+.toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.35rem}
+.tab{font:600 .88rem/1 var(--body);padding:.55rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.toolbar select{width:auto}
+.apps{display:grid;gap:.75rem}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:4px minmax(0,1fr)}
+.app .stripe{border-radius:var(--radius) 0 0 var(--radius);background:var(--line)}
+.app[data-status="pending"] .stripe{background:var(--info)}
+.app[data-status="approved"] .stripe{background:var(--warn)}
+.app[data-status="confirmed"] .stripe{background:var(--ok)}
+.app[data-status="declined"] .stripe{background:var(--muted)}
+.app[data-status="waitlisted"] .stripe{background:var(--muted)}
+.app[data-overdue="true"] .stripe{background:var(--bad)}
+.app-body{padding:1rem 1.15rem;display:grid;gap:.8rem;min-width:0}
+.app-top{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1.3fr) minmax(0,1fr);gap:1rem;align-items:start}
+.app-team{font:800 1.4rem/1.05 var(--display);text-transform:uppercase;overflow-wrap:anywhere}
+.app small{display:block;color:var(--muted);font-size:.88rem;overflow-wrap:anywhere}
+.pills{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.4rem}
+.pill{font:700 .72rem/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:.35rem .5rem;border-radius:4px;background:var(--chip);color:var(--ink);white-space:nowrap}
+.pill.pending{background:var(--info-bg);color:var(--info)}
+.pill.approved{background:var(--warn-bg);color:var(--warn)}
+.pill.confirmed,.pill.yes{background:var(--ok-bg);color:var(--ok)}
+.pill.declined,.pill.waitlisted{background:var(--chip);color:var(--muted)}
+.pill.bad{background:var(--bad-bg);color:var(--bad)}
+.pill.sample{background:transparent;border:1px dashed var(--muted);color:var(--muted)}
+.checklist{display:grid;gap:.3rem;font-size:.92rem}
+.checklist div{display:flex;gap:.45rem;align-items:center}
+.dot{width:.6rem;height:.6rem;border-radius:50%;background:var(--line);flex:none}
+.dot.on{background:var(--ok)}
+.dot.late{background:var(--bad)}
+.actions{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+details.more summary{cursor:pointer;font-weight:600;font-size:.9rem;color:var(--muted)}
+details.more[open] summary{margin-bottom:.6rem}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.3rem 1rem;font-size:.92rem}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.empty{text-align:center;padding:3rem 1rem;border:1px dashed var(--line);border-radius:var(--radius);color:var(--muted)}
+.login{max-width:26rem;margin:0 auto;display:grid;gap:1rem}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:.8rem 1.1rem;border-radius:var(--radius);font-weight:600;font-size:.95rem;max-width:min(36rem,calc(100% - 32px));box-shadow:0 8px 30px rgba(0,0,0,.25);z-index:20}
+
+footer{background:var(--hero-bg);color:var(--hero-muted);font-size:.92rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-block:2rem}
+footer a{color:var(--hero-fg)}
+
+@media (max-width:860px){
+  .hero-inner,.apply-grid{grid-template-columns:minmax(0,1fr)}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .app-top{grid-template-columns:minmax(0,1fr)}
+  .hero .faceoff{opacity:.08}
+}
+@media (max-width:520px){
+  .row,.choice,.divisions,.steps{grid-template-columns:minmax(0,1fr)}
+  .topnav .hide-sm{display:none}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:860px){.hero-wolf{width:min(70%,15rem)}}
+</style>
+</head>
+<body>
+
+<div class="preview" id="previewBanner" hidden>
+  <div class="wrap"><strong>Preview mode.</strong><span>Nothing is saved to the Google Sheet and no emails are sent. The organizer dashboard accepts any key and shows sample teams.</span></div>
+</div>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" id="brandLink">
+      <img class="puck" src="tournwolf-180.png" alt="" width="40" height="40">
+      <span>Wolfpack Winter Classic</span>
+    </a>
+    <nav class="topnav" aria-label="Main">
+      <a href="#details" class="hide-sm" data-nav="home">Details</a>
+      <a href="#how" class="hide-sm" data-nav="home">How entry works</a>
+      <a href="#apply" class="btn btn-red btn-sm" data-nav="home">Apply</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- PUBLIC -->
+  <div id="view-home">
+    <section class="hero">
+      <canvas id="snow" aria-hidden="true"></canvas>
+      <svg class="faceoff" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="none" stroke="#fff" stroke-width="2"/><circle cx="100" cy="100" r="4" fill="#C8102E"/><path d="M60 88h22v-8M60 112h22v8M140 88h-22v-8M140 112h-22v8" fill="none" stroke="#fff" stroke-width="2"/></svg>
+      <div class="wrap hero-inner">
+        <div>
+          <div class="eyebrow" id="hostLine">Hosted by the Trails West Wolves</div>
+          <h1>Wolfpack<br><span class="w">Winter</span><br>Classic</h1>
+          <div class="hero-meta">
+            <span class="tag red">U9 Tier 2</span>
+            <span class="tag red">U9 Tier 3</span>
+            <span class="tag" id="heroDates">Dec 18–20, 2026</span>
+            <span class="tag">Dickson, AB</span>
+          </div>
+          <div class="hero-cta">
+            <a class="btn btn-red" href="#apply">Apply to enter</a>
+            <a class="btn btn-ghost-light" href="#how">How entry works</a>
+          </div>
+        </div>
+        <div class="hero-side">
+        <img class="hero-wolf" src="tournwolf-web.png" alt="Wolfpack Winter Classic logo: a grey wolf wearing a Santa hat" width="443" height="520">
+        <div class="board" aria-label="Tournament at a glance">
+          <div class="board-row" style="display:block">
+            <div class="board-label">Puck drop in</div>
+            <div class="count" id="countDays">–</div>
+            <div class="board-label" id="countUnit" style="margin-top:.4rem">days</div>
+          </div>
+          <div class="board-row"><span class="board-label">Weekend</span><span class="board-val">Fri–Sun</span></div>
+          <div class="board-row"><span class="board-label">Divisions</span><span class="board-val">U9 T2 · U9 T3</span></div>
+          <div class="board-row"><span class="board-label">Spots</span><span class="board-val" id="boardSpots">Limited</span></div>
+        </div>
+        </div>
+      </div>
+      <div class="redline" aria-hidden="true"></div>
+    </section>
+
+    <section class="block" id="details">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Tournament details</span>
+          <h2>A holiday weekend of U9 hockey</h2>
+          <p class="muted">Three days of games for U9 Tier 2 and Tier 3 teams to close out the first half of the season, just before the Christmas break.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="k">Dates</span><span class="v">Dec 18–20</span><span class="s">Friday to Sunday, 2026</span></div>
+          <div class="fact"><span class="k">Location</span><span class="v">Dickson, AB</span><span class="s" id="venueLine">Arena details to follow</span></div>
+          <div class="fact"><span class="k">Divisions</span><span class="v">U9 T2 &amp; T3</span><span class="s">Tiered to keep games competitive</span></div>
+          <div class="fact"><span class="k">Entry fee</span><span class="v" id="feeVal">TBA</span><span class="s">Due within 48 hours of approval</span></div>
+        </div>
+        <div class="divisions">
+          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are accepted by the organizing committee.</p></div>
+          <div class="div-card"><div class="tier">U9 <span>Tier 3</span></div><p class="muted" id="spotsT3">Spots are limited. Teams are accepted by the organizing committee.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="how" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">How entry works</span>
+          <h2>From application to puck drop</h2>
+        </div>
+        <ol class="steps">
+          <li><h3>Apply</h3><p>The team manager submits the form below. You'll get an email confirming we received it.</p></li>
+          <li><h3>Review</h3><p>The organizing committee reviews applications and builds balanced divisions.</p></li>
+          <li><h3>Approval</h3><p>If your team is accepted, you'll get an email with a private link to submit your roster and pay the entry fee.</p></li>
+          <li><h3>48 hours</h3><p>Submit your roster and payment within 48 hours of approval to lock in your spot.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block" id="apply" style="padding-top:0">
+      <div class="wrap apply-grid">
+        <div class="section-head" style="margin:0">
+          <span class="eyebrow">Team application</span>
+          <h2>Apply to enter</h2>
+          <p class="muted">One application per team. Applying doesn't guarantee a spot. We'll email the manager as soon as a decision is made.</p>
+          <p class="muted">You'll need your roster and the entry fee only after approval, so applying takes about two minutes.</p>
+          <p class="muted" id="contactLine" hidden></p>
+        </div>
+        <div class="panel">
+          <form class="form" id="applyForm" novalidate>
+            <fieldset>
+              <legend>Division</legend>
+              <div class="choice" role="radiogroup">
+                <label><input type="radio" name="division" id="divT2" value="U9 Tier 2" required><span class="t">U9 Tier 2</span></label>
+                <label><input type="radio" name="division" id="divT3" value="U9 Tier 3"><span class="t">U9 Tier 3</span></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Team</legend>
+              <div class="row">
+                <div class="field"><label for="teamName">Team name <span class="req">*</span></label><input type="text" id="teamName" name="teamName" placeholder="e.g. Okotoks Oilers U9 T2 Red" required autocomplete="off"></div>
+                <div class="field"><label for="association">Minor hockey association <span class="req">*</span></label><input type="text" id="association" name="association" required autocomplete="organization"></div>
+              </div>
+              <div class="row">
+                <div class="field"><label for="hcrTeamNumber">Hockey Canada (HCR) team number</label><input type="text" id="hcrTeamNumber" name="hcrTeamNumber" autocomplete="off"><span class="hint">If you have it handy.</span></div>
+                <div class="field"><label for="playerCount">Number of players</label><input type="number" id="playerCount" name="playerCount" min="1" max="30" inputmode="numeric"></div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Team manager</legend>
+              <div class="row">
+                <div class="field"><label for="managerName">Full name <span class="req">*</span></label><input type="text" id="managerName" name="managerName" required autocomplete="name"></div>
+                <div class="field"><label for="phone">Phone <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel"></div>
+              </div>
+              <div class="row">
+                <div class="field"><label for="email">Email <span class="req">*</span></label><input type="email" id="email" name="email" required autocomplete="email"><span class="hint">Approval and roster instructions go here.</span></div>
+                <div class="field"><label for="coachName">Head coach</label><input type="text" id="coachName" name="coachName" autocomplete="off"></div>
+              </div>
+              <div class="field"><label for="notes">Anything we should know?</label><textarea id="notes" name="notes" placeholder="Travel considerations, scheduling requests, jersey colours…"></textarea></div>
+              <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+              <label class="check"><input type="checkbox" id="agree" name="agree" required><span>I'm the team manager (or authorized by them), and if approved our team will submit a roster and the entry fee within 48 hours.</span></label>
+            </fieldset>
+            <p class="error" id="applyError" role="alert" hidden></p>
+            <div><button class="btn btn-red" type="submit" id="applyBtn">Submit application</button></div>
+          </form>
+          <div class="success" id="applySuccess" hidden>
+            <span class="eyebrow">Application received</span>
+            <div class="big" id="successTeam"></div>
+            <p id="successMsg"></p>
+            <button class="btn btn-line btn-sm" type="button" id="applyAnother">Apply with another team</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ROSTER + PAYMENT (private link) -->
+  <div id="view-roster" hidden>
+    <section class="block">
+      <div class="wrap" style="display:grid;gap:1.5rem">
+        <div class="section-head" style="margin:0">
+          <span class="eyebrow">Roster &amp; payment</span>
+          <h2 id="rosterTeam">Loading your team…</h2>
+          <p class="muted" id="rosterSub"></p>
+        </div>
+        <div id="rosterState"></div>
+        <form class="form" id="rosterForm" novalidate hidden>
+          <div class="deadline-bar">
+            <div><div class="label">Due by</div><div class="num" id="rosterDeadline" style="font:800 1.4rem/1.1 var(--display);text-transform:uppercase"></div></div>
+            <div class="pills" id="rosterPills"></div>
+          </div>
+
+          <div class="panel" style="display:grid;gap:1.25rem">
+            <div><h3>Players</h3><p class="hint" style="margin-top:.4rem">Fill in the table, or upload your approved roster below. Doing both is fine.</p></div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>#</th><th>Player name</th><th>Jersey</th><th>Birth year</th><th>HCR number</th><th>Goalie</th></tr></thead>
+                <tbody id="playerRows"></tbody>
+              </table>
+            </div>
+            <div><button type="button" class="btn btn-line btn-sm" id="addPlayer">Add player</button></div>
+          </div>
+
+          <div class="panel" style="display:grid;gap:1.25rem">
+            <h3>Team staff</h3>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Name</th><th>Role</th><th>Phone</th></tr></thead>
+                <tbody id="staffRows"></tbody>
+              </table>
+            </div>
+            <div><button type="button" class="btn btn-line btn-sm" id="addStaff">Add staff</button></div>
+          </div>
+
+          <div class="panel" style="display:grid;gap:.75rem">
+            <h3>Upload roster</h3>
+            <label for="rosterFile">Approved roster (PDF or photo, up to 8 MB)</label>
+            <input type="file" id="rosterFile" accept=".pdf,image/*,.xlsx,.xls,.csv,.doc,.docx">
+            <span class="hint" id="fileNote"></span>
+          </div>
+
+          <div class="panel" style="display:grid;gap:1rem">
+            <h3>Entry fee</h3>
+            <div class="pay-box" id="payBox"></div>
+            <div class="field"><label for="paymentNote">How did you pay? <span class="req">*</span></label><input type="text" id="paymentNote" placeholder="e.g. e-Transfer sent Oct 14 from Jane Smith"><span class="hint">This helps us match your payment. We'll email you once it's confirmed.</span></div>
+          </div>
+
+          <p class="error" id="rosterError" role="alert" hidden></p>
+          <div><button class="btn btn-red" type="submit" id="rosterBtn">Submit roster &amp; payment details</button></div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- ORGANIZER -->
+  <div id="view-admin" hidden>
+    <section class="block">
+      <div class="wrap">
+        <div class="login panel" id="loginBox">
+          <span class="eyebrow">Organizers</span>
+          <h2>Team applications</h2>
+          <form id="loginForm" class="form" style="gap:1rem" novalidate>
+            <div class="field"><label for="adminKey">Organizer key</label><input type="password" id="adminKey" autocomplete="current-password"></div>
+            <p class="error" id="loginError" role="alert" hidden></p>
+            <button class="btn btn-red" type="submit" id="loginBtn">Open dashboard</button>
+          </form>
+        </div>
+
+        <div id="dash" hidden>
+          <div class="admin-head">
+            <div><span class="eyebrow">Organizer dashboard</span><h2 style="margin-top:.5rem">Team applications</h2></div>
+            <div class="actions"><button class="btn btn-line btn-sm" id="refreshBtn" type="button">Refresh</button><button class="btn btn-line btn-sm" id="logoutBtn" type="button">Sign out</button></div>
+          </div>
+          <div class="stats" id="stats"></div>
+          <div class="toolbar">
+            <div class="tabs" id="statusTabs" role="group" aria-label="Filter by status"></div>
+            <select id="divFilter" aria-label="Filter by division"><option value="">Both divisions</option><option>U9 Tier 2</option><option>U9 Tier 3</option></select>
+          </div>
+          <div class="apps" id="apps"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Wolfpack Winter Classic · December 18–20, 2026 · Dickson, Alberta</span>
+    <a href="#admin" id="adminLink">Organizer login</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ============================================================
+   SETTINGS — edit these, then redeploy.
+   API_URL: your Google Apps Script web app URL (ends in /exec).
+   Leave it empty to run the site in preview mode.
+   ============================================================ */
+const CONFIG = {
+  API_URL: "",
+  HOST_LINE: "Hosted by the Trails West Wolves",
+  START: "2026-12-18T08:00:00-07:00",
+  VENUE: "",                 // e.g. "Dickson Arena, 123 Main St"
+  ENTRY_FEE: "",             // e.g. "$1,250 per team"
+  ETRANSFER_EMAIL: "",       // where teams send Interac e-Transfers
+  PAYMENT_LINK: "",          // optional online payment link (Stripe, Square…)
+  CONTACT_EMAIL: "",         // shown publicly for questions
+  SPOTS: { "U9 Tier 2": 0, "U9 Tier 3": 0 },   // 0 = don't show a number
+  PAYMENT_WINDOW_HOURS: 48
+};
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const PREVIEW = !CONFIG.API_URL;
+const TZ = "America/Edmonton";
+const fmtDate = d => new Date(d).toLocaleString("en-CA", {timeZone: TZ, weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit"});
+const fmtShort = d => new Date(d).toLocaleDateString("en-CA", {timeZone: TZ, month: "short", day: "numeric"});
+const store = {
+  get(k){ try { return sessionStorage.getItem(k); } catch { return null; } },
+  set(k, v){ try { v == null ? sessionStorage.removeItem(k) : sessionStorage.setItem(k, v); } catch {} }
+};
+
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.hidden = true, 4200);
+}
+
+/* ---------------- API ---------------- */
+async function api(action, payload = {}){
+  if (PREVIEW) return mockApi(action, payload);
+  const res = await fetch(CONFIG.API_URL, { method: "POST", body: JSON.stringify({ action, ...payload }) });
+  let data;
+  try { data = await res.json(); } catch { throw new Error("The server didn't respond. Check your connection and try again."); }
+  if (!data.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+  return data;
+}
+
+/* Preview-only stand-in for the Apps Script backend. Sample teams are clearly labelled. */
+const mock = (() => {
+  const now = Date.now(), h = 3600e3;
+  const base = { association: "Example MHA", hcrTeamNumber: "", phone: "403-555-0100", coachName: "Sample Coach", notes: "", rosterJson: null, rosterFileUrl: "", paymentNote: "", paidAt: "", confirmedAt: "", sample: true };
+  return { apps: [
+    { ...base, id: "s1", createdAt: new Date(now - 30*h).toISOString(), status: "pending", division: "U9 Tier 2", teamName: "Sample Team A", managerName: "Sample Manager A", email: "manager.a@example.com", playerCount: 14, notes: "Prefer no games before 9 am Friday." },
+    { ...base, id: "s2", createdAt: new Date(now - 70*h).toISOString(), status: "approved", division: "U9 Tier 3", teamName: "Sample Team B", managerName: "Sample Manager B", email: "manager.b@example.com", playerCount: 13, token: "sampletokenb", approvedAt: new Date(now - 20*h).toISOString(), deadlineAt: new Date(now + 28*h).toISOString() },
+    { ...base, id: "s3", createdAt: new Date(now - 120*h).toISOString(), status: "confirmed", division: "U9 Tier 2", teamName: "Sample Team C", managerName: "Sample Manager C", email: "manager.c@example.com", playerCount: 15, token: "sampletokenc", approvedAt: new Date(now - 90*h).toISOString(), deadlineAt: new Date(now - 42*h).toISOString(), rosterSubmittedAt: new Date(now - 60*h).toISOString(), rosterJson: { players: [{name:"Example Player", jersey:"9", year:"2018", hcr:"", goalie:false}], staff: [{name:"Sample Coach", role:"Head coach", phone:""}] }, paymentNote: "e-Transfer sent", paidAt: new Date(now - 50*h).toISOString(), confirmedAt: new Date(now - 50*h).toISOString() }
+  ]};
+})();
+async function mockApi(action, p){
+  await new Promise(r => setTimeout(r, 450));
+  const find = t => mock.apps.find(a => a.token === t);
+  switch (action){
+    case "apply": {
+      const a = { ...p.application, id: "p" + Date.now(), createdAt: new Date().toISOString(), status: "pending" };
+      mock.apps.unshift(a); return { ok: true, id: a.id };
+    }
+    case "team": {
+      const a = find(p.token); if (!a) throw new Error("This roster link isn't valid. Check the link in your approval email.");
+      return { ok: true, team: pickTeam(a) };
+    }
+    case "roster": {
+      const a = find(p.token); if (!a) throw new Error("This roster link isn't valid.");
+      a.rosterJson = p.roster; a.paymentNote = p.paymentNote; a.rosterSubmittedAt = new Date().toISOString();
+      if (p.file) a.rosterFileUrl = "#preview-file";
+      return { ok: true, team: pickTeam(a) };
+    }
+    case "list": return { ok: true, apps: mock.apps };
+    case "update": {
+      const a = mock.apps.find(x => x.id === p.id); const now = new Date();
+      if (p.op === "approve"){ a.status = "approved"; a.token = a.token || ("t" + Math.random().toString(36).slice(2)); a.approvedAt = now.toISOString(); a.deadlineAt = new Date(+now + CONFIG.PAYMENT_WINDOW_HOURS*3600e3).toISOString(); }
+      if (p.op === "decline") a.status = "declined";
+      if (p.op === "waitlist") a.status = "waitlisted";
+      if (p.op === "reopen") a.status = "pending";
+      if (p.op === "markPaid") a.paidAt = now.toISOString();
+      if (p.op === "unmarkPaid"){ a.paidAt = ""; if (a.status === "confirmed") a.status = "approved"; }
+      if (p.op === "extend") a.deadlineAt = new Date(+new Date(a.deadlineAt || now) + 24*3600e3).toISOString();
+      if (a.status === "approved" && a.paidAt && a.rosterSubmittedAt){ a.status = "confirmed"; a.confirmedAt = now.toISOString(); }
+      return { ok: true, app: a };
+    }
+  }
+  throw new Error("Unknown action");
+}
+function pickTeam(a){ return { teamName: a.teamName, division: a.division, managerName: a.managerName, status: a.status, deadlineAt: a.deadlineAt, rosterSubmittedAt: a.rosterSubmittedAt || "", paid: !!a.paidAt, roster: a.rosterJson || null, paymentNote: a.paymentNote || "" }; }
+
+/* ---------------- Public page ---------------- */
+function setupPublic(){
+  $("#hostLine").textContent = CONFIG.HOST_LINE;
+  if (CONFIG.VENUE) $("#venueLine").textContent = CONFIG.VENUE;
+  if (CONFIG.ENTRY_FEE) $("#feeVal").textContent = CONFIG.ENTRY_FEE;
+  const sT2 = CONFIG.SPOTS["U9 Tier 2"], sT3 = CONFIG.SPOTS["U9 Tier 3"];
+  if (sT2) $("#spotsT2").textContent = `${sT2} team spots. Teams are accepted by the organizing committee.`;
+  if (sT3) $("#spotsT3").textContent = `${sT3} team spots. Teams are accepted by the organizing committee.`;
+  if (sT2 && sT3) $("#boardSpots").textContent = `${sT2 + sT3} teams`;
+  if (CONFIG.CONTACT_EMAIL){ const c = $("#contactLine"); c.hidden = false; c.innerHTML = `Questions? Email <a href="mailto:${esc(CONFIG.CONTACT_EMAIL)}">${esc(CONFIG.CONTACT_EMAIL)}</a>`; }
+  const days = Math.ceil((new Date(CONFIG.START) - Date.now()) / 86400e3);
+  if (days > 0){ $("#countDays").textContent = days; $("#countUnit").textContent = days === 1 ? "day" : "days"; }
+  else { $("#countDays").textContent = "Live"; $("#countUnit").textContent = "this weekend"; }
+
+  const form = $("#applyForm");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const err = $("#applyError"); err.hidden = true;
+    const f = Object.fromEntries(new FormData(form).entries());
+    const missing = [];
+    if (!f.division) missing.push("division");
+    for (const [k, label] of [["teamName","team name"],["association","association"],["managerName","manager name"],["phone","phone"],["email","email"]]) if (!String(f[k] || "").trim()) missing.push(label);
+    if (missing.length){ err.textContent = `Please add: ${missing.join(", ")}.`; err.hidden = false; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())){ err.textContent = "That email address doesn't look right. Check it and try again."; err.hidden = false; return; }
+    if (!f.agree){ err.textContent = "Please confirm the roster and payment commitment."; err.hidden = false; return; }
+    const btn = $("#applyBtn"); btn.disabled = true; btn.textContent = "Submitting…";
+    try {
+      const application = {};
+      for (const k of ["division","teamName","association","hcrTeamNumber","playerCount","managerName","phone","email","coachName","notes","website"]) application[k] = String(f[k] || "").trim();
+      await api("apply", { application });
+      form.hidden = true;
+      $("#successTeam").textContent = application.teamName;
+      $("#successMsg").textContent = PREVIEW
+        ? `Preview: on the live site, a confirmation email goes to ${application.email} and the organizers are notified.`
+        : `We've emailed a confirmation to ${application.email}. You'll hear from us once the committee reviews applications. If it doesn't arrive in a few minutes, check your spam folder.`;
+      $("#applySuccess").hidden = false;
+      $("#apply").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (ex){ err.textContent = ex.message; err.hidden = false; }
+    finally { btn.disabled = false; btn.textContent = "Submit application"; }
+  });
+  $("#applyAnother").addEventListener("click", () => { form.reset(); form.hidden = false; $("#applySuccess").hidden = true; });
+}
+
+/* ---------------- Snow (hero) ---------------- */
+function snow(){
+  const c = $("#snow"); if (!c) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const ctx = c.getContext("2d"); let w, h, flakes;
+  const size = () => { const r = c.getBoundingClientRect(); w = c.width = r.width * devicePixelRatio; h = c.height = r.height * devicePixelRatio;
+    flakes = Array.from({length: Math.min(110, Math.round(r.width / 9))}, () => ({ x: Math.random()*w, y: Math.random()*h, r: (Math.random()*1.8+.6)*devicePixelRatio, s: (Math.random()*.5+.25)*devicePixelRatio, d: Math.random()*Math.PI*2 })); };
+  size(); addEventListener("resize", size);
+  (function tick(){
+    if (!$("#view-home").hidden){
+      ctx.clearRect(0,0,w,h); ctx.fillStyle = "rgba(255,255,255,.75)";
+      for (const f of flakes){ f.y += f.s; f.d += .01; f.x += Math.sin(f.d) * .3; if (f.y > h){ f.y = -4; f.x = Math.random()*w; } ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fill(); }
+    }
+    requestAnimationFrame(tick);
+  })();
+}
+
+/* ---------------- Roster page ---------------- */
+let rosterToken = null;
+function playerRow(i, p = {}){
+  return `<tr><td class="idx">${i}</td>
+    <td><input type="text" aria-label="Player ${i} name" data-f="name" value="${esc(p.name)}"></td>
+    <td class="w-num"><input type="text" inputmode="numeric" aria-label="Player ${i} jersey" data-f="jersey" value="${esc(p.jersey)}"></td>
+    <td class="w-year"><input type="text" inputmode="numeric" aria-label="Player ${i} birth year" data-f="year" placeholder="2018" value="${esc(p.year)}"></td>
+    <td><input type="text" aria-label="Player ${i} HCR number" data-f="hcr" value="${esc(p.hcr)}"></td>
+    <td><input type="checkbox" aria-label="Player ${i} is a goalie" data-f="goalie" ${p.goalie ? "checked" : ""} style="accent-color:var(--red);width:1.1rem;height:1.1rem"></td></tr>`;
+}
+function staffRow(s = {}){
+  const roles = ["Head coach","Assistant coach","Manager","Safety person","Trainer","Other"];
+  return `<tr><td><input type="text" aria-label="Staff name" data-f="name" value="${esc(s.name)}"></td>
+    <td><select aria-label="Staff role" data-f="role">${roles.map(r => `<option ${s.role === r ? "selected" : ""}>${r}</option>`).join("")}</select></td>
+    <td><input type="tel" aria-label="Staff phone" data-f="phone" value="${esc(s.phone)}"></td></tr>`;
+}
+function readRows(sel){
+  return $$(sel + " tr").map(tr => { const o = {}; $$("[data-f]", tr).forEach(i => o[i.dataset.f] = i.type === "checkbox" ? i.checked : i.value.trim()); return o; }).filter(o => o.name);
+}
+function payBoxHtml(team){
+  const ref = `${team.teamName} – WWC`;
+  let html = `<div><strong>Entry fee:</strong> ${esc(CONFIG.ENTRY_FEE || "See your approval email")}</div>`;
+  if (CONFIG.ETRANSFER_EMAIL) html += `<div>Send an Interac e-Transfer to:</div><div class="copy-line"><code>${esc(CONFIG.ETRANSFER_EMAIL)}</code><button type="button" class="btn btn-line btn-sm" data-copy="${esc(CONFIG.ETRANSFER_EMAIL)}">Copy</button></div><div>Put this in the message:</div><div class="copy-line"><code>${esc(ref)}</code><button type="button" class="btn btn-line btn-sm" data-copy="${esc(ref)}">Copy</button></div>`;
+  if (CONFIG.PAYMENT_LINK) html += `<div><a class="btn btn-red btn-sm" href="${esc(CONFIG.PAYMENT_LINK)}" target="_blank" rel="noopener">Pay online</a></div>`;
+  if (!CONFIG.ETRANSFER_EMAIL && !CONFIG.PAYMENT_LINK) html += `<div class="muted">Payment instructions are in your approval email.</div>`;
+  return html;
+}
+async function showRoster(token){
+  rosterToken = token;
+  const form = $("#rosterForm"), state = $("#rosterState");
+  form.hidden = true; state.innerHTML = "";
+  try {
+    const { team } = await api("team", { token });
+    $("#rosterTeam").textContent = team.teamName;
+    $("#rosterSub").textContent = `${team.division} · Manager: ${team.managerName}`;
+    if (!["approved","confirmed"].includes(team.status)){
+      state.innerHTML = `<div class="panel"><p>This team isn't approved for roster submission right now. If you think that's a mistake, reply to your approval email.</p></div>`; return;
+    }
+    if (team.status === "confirmed"){
+      state.innerHTML = `<div class="panel" style="display:grid;gap:.5rem"><span class="pill confirmed" style="justify-self:start">Confirmed</span><p>Your roster and payment are in. Your team is confirmed for the Wolfpack Winter Classic. The schedule will be emailed before the tournament.</p><p class="muted">Need to change your roster? You can update it below.</p></div>`;
+    }
+    const due = new Date(team.deadlineAt), left = due - Date.now();
+    $("#rosterDeadline").textContent = fmtDate(due);
+    const pills = [];
+    pills.push(team.rosterSubmittedAt ? `<span class="pill yes">Roster received</span>` : `<span class="pill">Roster needed</span>`);
+    pills.push(team.paid ? `<span class="pill yes">Payment confirmed</span>` : `<span class="pill">Payment ${team.paymentNote ? "being verified" : "needed"}</span>`);
+    if (team.status !== "confirmed") pills.push(left > 0 ? `<span class="pill approved">${Math.floor(left/3600e3)}h ${Math.floor(left%3600e3/60e3)}m left</span>` : `<span class="pill bad">Past due</span>`);
+    $("#rosterPills").innerHTML = pills.join("");
+    const r = team.roster || {};
+    const players = r.players?.length ? r.players : [];
+    const n = Math.max(12, players.length + 1);
+    $("#playerRows").innerHTML = Array.from({length: n}, (_, i) => playerRow(i + 1, players[i])).join("");
+    const staff = r.staff?.length ? r.staff : [{role:"Head coach"},{role:"Assistant coach"},{role:"Manager", name: team.managerName}];
+    $("#staffRows").innerHTML = staff.map(staffRow).join("");
+    $("#payBox").innerHTML = payBoxHtml(team);
+    $("#paymentNote").value = team.paymentNote || "";
+    form.hidden = false;
+  } catch (ex){
+    $("#rosterTeam").textContent = "Roster link not found";
+    state.innerHTML = `<div class="panel"><p>${esc(ex.message)}</p></div>`;
+  }
+}
+function setupRoster(){
+  $("#addPlayer").addEventListener("click", () => { const tb = $("#playerRows"); tb.insertAdjacentHTML("beforeend", playerRow(tb.children.length + 1)); });
+  $("#addStaff").addEventListener("click", () => $("#staffRows").insertAdjacentHTML("beforeend", staffRow({role:"Assistant coach"})));
+  $("#rosterFile").addEventListener("change", e => { const f = e.target.files[0]; $("#fileNote").textContent = f ? `${f.name} · ${(f.size/1048576).toFixed(1)} MB` : ""; });
+  document.addEventListener("click", async e => {
+    const b = e.target.closest("[data-copy]"); if (!b) return;
+    try { await navigator.clipboard.writeText(b.dataset.copy); toast("Copied"); } catch { toast("Select the text to copy it"); }
+  });
+  $("#rosterForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const err = $("#rosterError"); err.hidden = true;
+    const players = readRows("#playerRows"), staff = readRows("#staffRows");
+    const fileIn = $("#rosterFile").files[0];
+    const paymentNote = $("#paymentNote").value.trim();
+    if (!players.length && !fileIn){ err.textContent = "Add at least one player, or upload your roster file."; err.hidden = false; return; }
+    if (!paymentNote){ err.textContent = "Tell us how you paid so we can match your payment."; err.hidden = false; return; }
+    if (fileIn && fileIn.size > 8 * 1048576){ err.textContent = "That file is over 8 MB. Try a smaller PDF or a photo."; err.hidden = false; return; }
+    const btn = $("#rosterBtn"); btn.disabled = true; btn.textContent = "Submitting…";
+    try {
+      let file = null;
+      if (fileIn){
+        const data = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(fileIn); });
+        file = { name: fileIn.name, mimeType: fileIn.type || "application/octet-stream", data };
+      }
+      await api("roster", { token: rosterToken, roster: { players, staff }, paymentNote, file });
+      toast(PREVIEW ? "Preview: roster saved. Live site emails the manager a receipt." : "Roster submitted. We've emailed you a receipt.");
+      await showRoster(rosterToken);
+      scrollTo({ top: 0, behavior: "smooth" });
+    } catch (ex){ err.textContent = ex.message; err.hidden = false; }
+    finally { btn.disabled = false; btn.innerHTML = "Submit roster &amp; payment details"; }
+  });
+}
+
+/* ---------------- Organizer dashboard ---------------- */
+const adm = { key: null, apps: [], status: "all", div: "" };
+const STATUS_TABS = [["all","All"],["pending","To review"],["approved","Awaiting roster/payment"],["confirmed","Confirmed"],["waitlisted","Waitlist"],["declined","Declined"]];
+const isOverdue = a => a.status === "approved" && a.deadlineAt && new Date(a.deadlineAt) < Date.now() && !(a.rosterSubmittedAt && a.paidAt);
+
+function setupAdmin(){
+  $("#loginForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const key = $("#adminKey").value.trim(), err = $("#loginError"); err.hidden = true;
+    if (!key){ err.textContent = "Enter the organizer key."; err.hidden = false; return; }
+    const btn = $("#loginBtn"); btn.disabled = true;
+    try { adm.key = key; await loadApps(); store.set("wwc-key", key); $("#loginBox").hidden = true; $("#dash").hidden = false; }
+    catch (ex){ adm.key = null; err.textContent = ex.message; err.hidden = false; }
+    finally { btn.disabled = false; }
+  });
+  $("#refreshBtn").addEventListener("click", () => loadApps().then(() => toast("Up to date")).catch(ex => toast(ex.message)));
+  $("#logoutBtn").addEventListener("click", () => { store.set("wwc-key", null); adm.key = null; $("#dash").hidden = true; $("#loginBox").hidden = false; $("#adminKey").value = ""; });
+  $("#divFilter").addEventListener("change", e => { adm.div = e.target.value; renderApps(); });
+  $("#statusTabs").addEventListener("click", e => { const b = e.target.closest("[data-status]"); if (!b) return; adm.status = b.dataset.status; renderApps(); });
+  $("#apps").addEventListener("click", onAppAction);
+}
+async function loadApps(){ const { apps } = await api("list", { key: adm.key }); adm.apps = apps; renderApps(); }
+
+function renderApps(){
+  const A = adm.apps;
+  const c = s => A.filter(a => a.status === s).length;
+  const overdue = A.filter(isOverdue).length;
+  $("#stats").innerHTML = [
+    ["Applied", A.length], ["To review", c("pending")], ["Awaiting", c("approved")], ["Confirmed", c("confirmed")], ["Overdue", overdue, overdue ? "alert" : ""]
+  ].map(([k, n, cls]) => `<div class="stat ${cls || ""}"><span class="n">${n}</span><span class="k">${k}</span></div>`).join("")
+   + "";
+  const byDiv = d => A.filter(a => a.division === d && a.status === "confirmed").length;
+  $("#statusTabs").innerHTML = STATUS_TABS.map(([s, l]) => {
+    const n = s === "all" ? A.length : c(s);
+    return `<button type="button" class="tab" data-status="${s}" aria-pressed="${adm.status === s}">${l} <span class="num muted">${n}</span></button>`;
+  }).join("");
+  const list = A.filter(a => (adm.status === "all" || a.status === adm.status) && (!adm.div || a.division === adm.div))
+               .sort((a, b) => order(a) - order(b) || new Date(a.createdAt) - new Date(b.createdAt));
+  if (!A.length){ $("#apps").innerHTML = `<div class="empty">No applications yet. They'll appear here as soon as a manager submits the form on the public page.</div>`; return; }
+  if (!list.length){ $("#apps").innerHTML = `<div class="empty">No teams match this filter.</div>`; return; }
+  $("#apps").innerHTML = list.map(appCard).join("") +
+    `<p class="hint" style="margin-top:.5rem">Confirmed so far: U9 Tier 2 — ${byDiv("U9 Tier 2")}${CONFIG.SPOTS["U9 Tier 2"] ? " of " + CONFIG.SPOTS["U9 Tier 2"] : ""} · U9 Tier 3 — ${byDiv("U9 Tier 3")}${CONFIG.SPOTS["U9 Tier 3"] ? " of " + CONFIG.SPOTS["U9 Tier 3"] : ""}</p>`;
+}
+function order(a){ return isOverdue(a) ? 0 : ({pending:1, approved:2, waitlisted:3, confirmed:4, declined:5}[a.status] ?? 6); }
+function timeLeft(a){
+  const ms = new Date(a.deadlineAt) - Date.now(), abs = Math.abs(ms), h = Math.floor(abs/3600e3), m = Math.floor(abs%3600e3/60e3);
+  return ms >= 0 ? `Due in ${h}h ${m}m` : `Overdue by ${h}h ${m}m`;
+}
+function appCard(a){
+  const od = isOverdue(a);
+  const statusLabel = {pending:"To review", approved:"Awaiting roster/payment", confirmed:"Confirmed", waitlisted:"Waitlist", declined:"Declined"}[a.status] || a.status;
+  const showProgress = ["approved","confirmed"].includes(a.status);
+  const btn = (op, label, cls = "btn-line", extra = "") => `<button type="button" class="btn ${cls} btn-sm" data-op="${op}" data-id="${esc(a.id)}" ${extra}>${label}</button>`;
+  const acts = [];
+  if (a.status === "pending" || a.status === "waitlisted") acts.push(btn("approve", "Approve &amp; send roster email", "btn-red", `data-confirm="Confirm: email ${esc(a.email)}"`));
+  if (a.status === "pending") acts.push(btn("waitlist", "Waitlist"));
+  if (a.status === "approved" || a.status === "confirmed") acts.push(a.paidAt ? btn("unmarkPaid", "Undo paid") : btn("markPaid", "Mark paid", "btn-red"));
+  if (a.status === "approved") acts.push(btn("extend", "Extend 24h"));
+  if (a.status === "approved" || a.status === "confirmed"){ acts.push(btn("resend", "Resend email")); acts.push(btn("rosterlink", PREVIEW ? "Open roster form" : "Copy roster link")); }
+  if (["pending","waitlisted","approved"].includes(a.status)) acts.push(btn("decline", "Decline", "btn-line", `data-confirm="Confirm decline"`));
+  if (a.status === "declined") acts.push(btn("reopen", "Move back to review"));
+
+  const r = a.rosterJson;
+  const rosterTable = r?.players?.length ? `<div class="table-scroll" style="margin-top:.6rem"><table><thead><tr><th>#</th><th>Player</th><th>Jersey</th><th>Year</th><th>HCR</th><th>G</th></tr></thead><tbody>${r.players.map((p, i) => `<tr><td class="idx">${i+1}</td><td>${esc(p.name)}</td><td class="num">${esc(p.jersey)}</td><td class="num">${esc(p.year)}</td><td>${esc(p.hcr)}</td><td>${p.goalie ? "G" : ""}</td></tr>`).join("")}</tbody></table></div>` : "";
+  const staffList = r?.staff?.length ? r.staff.map(s => `${esc(s.name)} (${esc(s.role)}${s.phone ? ", " + esc(s.phone) : ""})`).join("; ") : "";
+
+  return `<article class="app" data-status="${esc(a.status)}" data-overdue="${od}">
+    <div class="stripe"></div>
+    <div class="app-body">
+      <div class="app-top">
+        <div>
+          <div class="app-team">${esc(a.teamName)}</div>
+          <small>${esc(a.association)}${a.playerCount ? " · " + esc(a.playerCount) + " players" : ""}</small>
+          <div class="pills"><span class="pill">${esc(a.division)}</span><span class="pill ${esc(a.status)}">${statusLabel}</span>${od ? `<span class="pill bad">Overdue</span>` : ""}${a.sample ? `<span class="pill sample">Sample</span>` : ""}</div>
+        </div>
+        <div>
+          <div style="font-weight:600">${esc(a.managerName)}</div>
+          <small>${esc(a.email)}</small><small>${esc(a.phone)}</small>
+          <small>Applied ${fmtShort(a.createdAt)}</small>
+        </div>
+        <div class="checklist">
+          ${showProgress ? `
+          <div><span class="dot ${a.rosterSubmittedAt ? "on" : od ? "late" : ""}"></span>Roster ${a.rosterSubmittedAt ? "received " + fmtShort(a.rosterSubmittedAt) : "not yet"}</div>
+          <div><span class="dot ${a.paidAt ? "on" : od ? "late" : ""}"></span>Payment ${a.paidAt ? "marked paid" : a.paymentNote ? "reported, needs checking" : "not yet"}</div>
+          ${a.status === "approved" ? `<div class="num" style="font-weight:600;color:${od ? "var(--bad)" : "var(--ink)"}">${timeLeft(a)}</div>` : ""}` : `<span class="muted">${a.status === "pending" ? "Waiting for a decision" : ""}</span>`}
+        </div>
+      </div>
+      <div class="actions">${acts.join("")}</div>
+      <details class="more"><summary>Details</summary>
+        <dl class="kv">
+          ${a.coachName ? `<dt>Head coach</dt><dd>${esc(a.coachName)}</dd>` : ""}
+          ${a.hcrTeamNumber ? `<dt>HCR team #</dt><dd>${esc(a.hcrTeamNumber)}</dd>` : ""}
+          ${a.notes ? `<dt>Notes</dt><dd>${esc(a.notes)}</dd>` : ""}
+          ${a.approvedAt ? `<dt>Approved</dt><dd>${fmtDate(a.approvedAt)}</dd>` : ""}
+          ${a.deadlineAt ? `<dt>Deadline</dt><dd>${fmtDate(a.deadlineAt)}</dd>` : ""}
+          ${a.paymentNote ? `<dt>Payment note</dt><dd>${esc(a.paymentNote)}</dd>` : ""}
+          ${staffList ? `<dt>Staff</dt><dd>${staffList}</dd>` : ""}
+          ${a.rosterFileUrl ? `<dt>Roster file</dt><dd>${a.rosterFileUrl.startsWith("http") ? `<a href="${esc(a.rosterFileUrl)}" target="_blank" rel="noopener">Open in Google Drive</a>` : "Uploaded (preview)"}</dd>` : ""}
+        </dl>
+        ${rosterTable}
+      </details>
+    </div>
+  </article>`;
+}
+async function onAppAction(e){
+  const b = e.target.closest("[data-op]"); if (!b) return;
+  const { op, id } = b.dataset; const a = adm.apps.find(x => x.id === id);
+  if (op === "rosterlink"){
+    if (PREVIEW){ showView("roster"); showRoster(a.token); scrollTo({top:0}); return; }
+    const link = location.origin + location.pathname + "?roster=" + encodeURIComponent(a.token);
+    try { await navigator.clipboard.writeText(link); toast("Roster link copied"); } catch { toast(link); }
+    return;
+  }
+  if (b.dataset.confirm && !b.dataset.armed){
+    b.dataset.armed = "1"; const old = b.innerHTML; b.textContent = b.dataset.confirm;
+    setTimeout(() => { if (b.isConnected){ delete b.dataset.armed; b.innerHTML = old; } }, 4000);
+    return;
+  }
+  b.disabled = true;
+  try {
+    const { app } = await api("update", { key: adm.key, id, op });
+    Object.assign(a, app); renderApps();
+    const msgs = { approve: `Approved. Roster & payment email sent to ${a.email}.`, decline: `Declined. ${a.managerName} has been emailed.`, waitlist: `Waitlisted. ${a.managerName} has been emailed.`, markPaid: a.status === "confirmed" ? "Paid. Team is confirmed and the manager has been emailed." : "Marked paid.", unmarkPaid: "Payment unmarked.", extend: "Deadline extended by 24 hours.", resend: `Email resent to ${a.email}.`, reopen: "Moved back to review." };
+    toast((PREVIEW ? "Preview: " : "") + (msgs[op] || "Updated."));
+  } catch (ex){ toast(ex.message); b.disabled = false; }
+}
+
+/* ---------------- Views ---------------- */
+function showView(v){
+  for (const id of ["home","roster","admin"]) $("#view-" + id).hidden = id !== v;
+  $$(".topnav [data-nav]").forEach(a => a.hidden = v !== "home");
+}
+function route(){
+  const q = new URLSearchParams(location.search);
+  const t = q.get("roster");
+  if (t){ showView("roster"); showRoster(t); return; }
+  if (location.hash === "#admin" || q.has("admin")){
+    showView("admin");
+    const saved = store.get("wwc-key");
+    if (saved && !adm.key){ adm.key = saved; loadApps().then(() => { $("#loginBox").hidden = true; $("#dash").hidden = false; }).catch(() => { adm.key = null; store.set("wwc-key", null); }); }
+    return;
+  }
+  showView("home");
+}
+$("#adminLink").addEventListener("click", e => { e.preventDefault(); history.replaceState(null, "", "#admin"); route(); scrollTo({top:0}); });
+$("#brandLink").addEventListener("click", e => { if (!$("#view-home").hidden) return; e.preventDefault(); history.replaceState(null, "", location.pathname); route(); scrollTo({top:0}); });
+$$(".topnav a").forEach(a => a.addEventListener("click", () => { if ($("#view-home").hidden){ history.replaceState(null, "", location.pathname); route(); } }));
+addEventListener("hashchange", () => { if (location.hash === "#admin") route(); });
+
+$("#previewBanner").hidden = !PREVIEW;
+setupPublic(); setupRoster(); setupAdmin(); snow(); route();
+</script>
+</body></html>
