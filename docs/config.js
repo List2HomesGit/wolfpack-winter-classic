@@ -5,10 +5,10 @@ window.WWC_CONFIG = {
   // Google Apps Script web app URL (ends in /exec). Empty = preview mode.
   API_URL: "",
 
-  HOST_LINE: "Hosted by the Trails West Wolves",
+  HOST_LINE: "Hosted by Trails West Hockey Association",
   START: "2026-12-18T08:00:00-07:00",
-  VENUE: "",                 // e.g. "Dickson Arena, 123 Main St"
-  ENTRY_FEE: "",             // e.g. "$1,250 per team"
+  VENUE: "Dickson Arena",
+  ENTRY_FEE: "$1,800",
   ETRANSFER_EMAIL: "",       // where teams send Interac e-Transfers
   PAYMENT_LINK: "",          // optional online payment link
   CONTACT_EMAIL: "wolfpackwinterclassic@gmail.com",   // shown publicly for questions

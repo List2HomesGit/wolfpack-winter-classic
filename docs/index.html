@@ -110,6 +110,9 @@ section.block{padding-block:clamp(3rem,7vw,5rem)}
 .div-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:.6rem;align-content:start}
 .div-card .tier{font:900 3.2rem/.9 var(--display);text-transform:uppercase}
 .div-card .tier span{color:var(--red-text)}
+.format{list-style:none;margin:.25rem 0 0;padding:0;display:grid;gap:.5rem;font-size:.98rem}
+.format li{padding-left:1rem;position:relative}
+.format li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;border-radius:50%;background:var(--red)}
 .sanction{font:600 .82rem/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .sanction b{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.04em}
 .perks{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:1rem}
@@ -130,7 +133,8 @@ section.block{padding-block:clamp(3rem,7vw,5rem)}
 fieldset{border:0;margin:0;padding:0;display:grid;gap:1rem;min-width:0}
 legend{font:800 1.2rem/1 var(--display);text-transform:uppercase;letter-spacing:.03em;margin-bottom:1rem;padding:0}
 .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
-.field{display:grid;gap:.35rem;min-width:0}
+.field{display:grid;gap:.35rem;min-width:0;align-content:start}
+.row.bottom{align-items:end}
 label,.label{font-weight:600;font-size:.92rem}
 .req{color:var(--red-text)}
 input[type=text],input[type=email],input[type=tel],input[type=number],input[type=password],select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--ice);border:1px solid var(--line);border-radius:var(--radius);padding:.7rem .8rem;width:100%;min-width:0}
@@ -273,12 +277,13 @@ footer a{color:var(--hero-fg)}
       <svg class="faceoff" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="none" stroke="#fff" stroke-width="2"/><circle cx="100" cy="100" r="4" fill="#C8102E"/><path d="M60 88h22v-8M60 112h22v8M140 88h-22v-8M140 112h-22v8" fill="none" stroke="#fff" stroke-width="2"/></svg>
       <div class="wrap hero-inner">
         <div>
-          <div class="eyebrow" id="hostLine">Hosted by the Trails West Wolves</div>
+          <div class="eyebrow" id="hostLine">Hosted by Trails West Hockey Association</div>
           <h1>Wolfpack<br><span class="w">Winter</span><br>Classic</h1>
           <div class="hero-meta">
             <span class="tag red">U9 Tier 2</span>
             <span class="tag" id="heroDates">Dec 18–20, 2026</span>
             <span class="tag">Dickson, AB</span>
+            <span class="tag">4 games guaranteed</span>
           </div>
           <div class="hero-cta">
             <a class="btn btn-red" href="#apply">Apply to enter</a>
@@ -293,9 +298,9 @@ footer a{color:var(--hero-fg)}
             <div class="count" id="countDays">–</div>
             <div class="board-label" id="countUnit" style="margin-top:.4rem">days</div>
           </div>
-          <div class="board-row"><span class="board-label">Weekend</span><span class="board-val">Fri–Sun</span></div>
+          <div class="board-row"><span class="board-label">Games</span><span class="board-val">4 guaranteed</span></div>
           <div class="board-row"><span class="board-label">Division</span><span class="board-val">U9 Tier 2</span></div>
-          <div class="board-row"><span class="board-label">Spots</span><span class="board-val" id="boardSpots">Limited</span></div>
+          <div class="board-row"><span class="board-label">Decisions by</span><span class="board-val">Oct 25</span></div>
         </div>
         </div>
       </div>
@@ -311,18 +316,24 @@ footer a{color:var(--hero-fg)}
         </div>
         <div class="facts">
           <div class="fact"><span class="k">Dates</span><span class="v">Dec 18–20</span><span class="s">Friday to Sunday, 2026</span></div>
-          <div class="fact"><span class="k">Location</span><span class="v">Dickson, AB</span><span class="s" id="venueLine">Arena details to follow</span></div>
+          <div class="fact"><span class="k">Location</span><span class="v">Dickson, AB</span><span class="s" id="venueLine">Dickson Arena</span></div>
           <div class="fact"><span class="k">Sanction</span><span class="v num">26-900363</span><span class="s">Hockey Alberta sanctioned</span></div>
-          <div class="fact"><span class="k">Entry fee</span><span class="v" id="feeVal">TBA</span><span class="s">Due within 48 hours of approval</span></div>
+          <div class="fact"><span class="k">Entry fee</span><span class="v num" id="feeVal">$1,800</span><span class="s">Per team. Due within 48 hours of acceptance.</span></div>
         </div>
         <div class="divisions">
-          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are accepted by the organizing committee.</p><p class="muted">Every game is U9 Tier 2, so teams play evenly matched opponents all weekend.</p></div>
+          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are accepted by the organizing committee.</p><p class="muted">Half-ice, split-squad round robin.</p>
+            <ul class="format">
+              <li><b>4 games</b> guaranteed per team</li>
+              <li>Each team splits into <b>2 even teams</b> and plays on both sides of the ice</li>
+              <li><b>4v4</b> plus goalies</li>
+              <li><b>Hockey Calgary</b> rules</li>
+            </ul>
+          </div>
           <div class="perks">
             <span class="eyebrow">Every team gets</span>
             <ul>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>Player awards every game</span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0z"/></svg><span>Player swag provided</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a2 2 0 0 0 0 4v5h18v-5a2 2 0 0 1 0-4V5H3z"/><path d="M14 5v3M14 11v2M14 16v1"/></svg><span>Raffle</span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="10" cy="15" r="1"/><circle cx="15" cy="15" r="1"/></svg><span>Snacks provided</span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3l7 13a3 3 0 0 0 2.6 1.5H20"/><ellipse cx="18" cy="20.5" rx="3" ry="1.3"/></svg><span>Great competition and hockey</span></li>
             </ul>
@@ -339,9 +350,9 @@ footer a{color:var(--hero-fg)}
         </div>
         <ol class="steps">
           <li><h3>Apply</h3><p>The team manager submits the form below. You'll get an email confirming we received it.</p></li>
-          <li><h3>Review</h3><p>The organizing committee reviews applications and builds a balanced schedule.</p></li>
-          <li><h3>Approval</h3><p>If your team is accepted, you'll get an email with a private link to submit your roster and pay the entry fee.</p></li>
-          <li><h3>48 hours</h3><p>Submit your roster and payment within 48 hours of approval to lock in your spot.</p></li>
+          <li><h3>Review</h3><p>The organizing committee reviews applications. Acceptance emails go out by October 25.</p></li>
+          <li><h3>Acceptance</h3><p>If your team is accepted, you'll get an email with a private link to submit your roster and payment details.</p></li>
+          <li><h3>48 hours</h3><p>Pay the $1,800 fee and submit your roster within 48 hours of acceptance to lock in your spot.</p></li>
         </ol>
       </div>
     </section>
@@ -351,42 +362,51 @@ footer a{color:var(--hero-fg)}
         <div class="section-head" style="margin:0">
           <span class="eyebrow">Team application</span>
           <h2>Apply to enter</h2>
-          <p class="muted">One application per team. Applying doesn't guarantee a spot. We'll email the manager as soon as a decision is made.</p>
-          <p class="muted">You'll need your roster and the entry fee only after approval, so applying takes about two minutes.</p>
+          <p class="muted">Please complete this application on behalf of your team. One application per team; applying doesn't guarantee a spot.</p>
+          <p><strong>Acceptance emails will be sent by October 25.</strong> The fee is due within 48 hours of acceptance.</p>
+          <p class="muted">We encourage rural teams to apply!</p>
           <p class="muted" id="contactLine" hidden></p>
         </div>
         <div class="panel">
           <form class="form" id="applyForm" novalidate>
-            <fieldset>
-              <legend>Division</legend>
-              <div class="choice" style="grid-template-columns:minmax(0,1fr)">
-                <label><input type="radio" name="division" id="divT2" value="U9 Tier 2" checked required><span class="t">U9 Tier 2</span><span class="muted" style="margin-left:auto;font-size:.9rem">Dec 18–20 · Dickson, AB</span></label>
-              </div>
-            </fieldset>
+            <input type="hidden" name="division" id="divT2" value="U9 Tier 2">
             <fieldset>
               <legend>Team</legend>
-              <div class="row">
-                <div class="field"><label for="teamName">Team name <span class="req">*</span></label><input type="text" id="teamName" name="teamName" placeholder="e.g. Okotoks Oilers U9 T2 Red" required autocomplete="off"></div>
-                <div class="field"><label for="association">Minor hockey association <span class="req">*</span></label><input type="text" id="association" name="association" required autocomplete="organization"></div>
+              <div class="field"><label for="teamName">1. Team name <span class="req">*</span></label><input type="text" id="teamName" name="teamName" placeholder="e.g. Okotoks Oilers U9 Red" required autocomplete="off"></div>
+              <div class="row bottom">
+                <div class="field"><label for="association">2. Hockey association, club, or organization <span class="req">*</span></label><input type="text" id="association" name="association" required autocomplete="organization"></div>
+                <div class="field"><label for="homeCommunity">3. Team's home community <span class="req">*</span></label><input type="text" id="homeCommunity" name="homeCommunity" required autocomplete="address-level2"></div>
               </div>
-              <div class="row">
-                <div class="field"><label for="hcrTeamNumber">Hockey Canada (HCR) team number</label><input type="text" id="hcrTeamNumber" name="hcrTeamNumber" autocomplete="off"><span class="hint">If you have it handy.</span></div>
-                <div class="field"><label for="playerCount">Number of players</label><input type="number" id="playerCount" name="playerCount" min="1" max="30" inputmode="numeric"></div>
+              <div class="field">
+                <span class="label" id="tierLabel">4. What tier is your team?</span>
+                <span class="hint">This is a Tier 2 tournament, of 4 tiers.</span>
+                <div class="choice" role="radiogroup" aria-labelledby="tierLabel">
+                  <label><input type="radio" name="tier" id="tier2" value="Tier 2"><span class="t">Tier 2</span></label>
+                  <label><input type="radio" name="tier" id="tierOther" value="Other – equivalent to Tier 2"><span>Other, equivalent to Tier 2</span></label>
+                </div>
+              </div>
+              <div class="field">
+                <label for="playerCount">5. Number of players on the team roster <span class="req">*</span></label>
+                <input type="number" id="playerCount" name="playerCount" min="1" max="30" inputmode="numeric" required style="max-width:10rem">
               </div>
             </fieldset>
             <fieldset>
-              <legend>Team manager</legend>
+              <legend>Primary contact</legend>
+              <div class="field"><label for="managerName">6. Team manager or primary contact name <span class="req">*</span></label><input type="text" id="managerName" name="managerName" required autocomplete="name"></div>
               <div class="row">
-                <div class="field"><label for="managerName">Full name <span class="req">*</span></label><input type="text" id="managerName" name="managerName" required autocomplete="name"></div>
-                <div class="field"><label for="phone">Phone <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel"></div>
+                <div class="field"><label for="email">7. Primary contact email address <span class="req">*</span></label><input type="email" id="email" name="email" required autocomplete="email"><span class="hint">Your acceptance email and roster link go here.</span></div>
+                <div class="field"><label for="phone">8. Primary contact phone number <span class="req">*</span></label><input type="tel" id="phone" name="phone" required autocomplete="tel"></div>
               </div>
-              <div class="row">
-                <div class="field"><label for="email">Email <span class="req">*</span></label><input type="email" id="email" name="email" required autocomplete="email"><span class="hint">Approval and roster instructions go here.</span></div>
-                <div class="field"><label for="coachName">Head coach</label><input type="text" id="coachName" name="coachName" autocomplete="off"></div>
+            </fieldset>
+            <fieldset>
+              <legend>Fee and reciprocal invitation</legend>
+              <label class="check"><input type="checkbox" id="agree" name="agree" required><span>9. I agree to pay the tournament fee of $1,800 within 48 hours of acceptance. <span class="req">*</span></span></label>
+              <div class="field">
+                <label for="reciprocal">10. Can you offer a reciprocal tournament invitation? <span class="req">*</span></label>
+                <span class="hint">Please specify date, location and division. If not, just say no. We're still very happy to receive your application and consider your team!</span>
+                <textarea id="reciprocal" name="reciprocal" placeholder="e.g. Yes: Jan 23–25, Okotoks, U9 Tier 2. Or: No" required></textarea>
               </div>
-              <div class="field"><label for="notes">Anything we should know?</label><textarea id="notes" name="notes" placeholder="Travel considerations, scheduling requests, jersey colours…"></textarea></div>
               <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
-              <label class="check"><input type="checkbox" id="agree" name="agree" required><span>I'm the team manager (or authorized by them), and if approved our team will submit a roster and the entry fee within 48 hours.</span></label>
             </fieldset>
             <p class="error" id="applyError" role="alert" hidden></p>
             <div><button class="btn btn-red" type="submit" id="applyBtn">Submit application</button></div>
@@ -508,7 +528,7 @@ footer a{color:var(--hero-fg)}
 /* Settings live in config.js (loaded before this script). These defaults apply if it's missing. */
 const CONFIG = Object.assign({
   API_URL: "",
-  HOST_LINE: "Hosted by the Trails West Wolves",
+  HOST_LINE: "Hosted by Trails West Hockey Association",
   START: "2026-12-18T08:00:00-07:00",
   VENUE: "", ENTRY_FEE: "", ETRANSFER_EMAIL: "", PAYMENT_LINK: "", CONTACT_EMAIL: "",
   SPOTS: { "U9 Tier 2": 0 },
@@ -546,10 +566,10 @@ async function api(action, payload = {}){
 /* Preview-only stand-in for the Apps Script backend. Sample teams are clearly labelled. */
 const mock = (() => {
   const now = Date.now(), h = 3600e3, iso = t => new Date(t).toISOString();
-  const base = { association: "Example MHA", hcrTeamNumber: "", phone: "403-555-0100", coachName: "Sample Coach", notes: "", rosterJson: null, rosterFileUrl: "", paymentNote: "", paidAt: "", confirmedAt: "", approvedAt: "", approvalEmailSentAt: "", decisionEmailSentAt: "", deadlineAt: "", rosterSubmittedAt: "", token: "", updatedBy: "", log: "", sample: true };
+  const base = { association: "Example MHA", homeCommunity: "Example Town", tier: "Tier 2", reciprocal: "No", phone: "403-555-0100", coachName: "", notes: "", rosterJson: null, rosterFileUrl: "", paymentNote: "", paidAt: "", confirmedAt: "", approvedAt: "", approvalEmailSentAt: "", decisionEmailSentAt: "", deadlineAt: "", rosterSubmittedAt: "", token: "", updatedBy: "", log: "", sample: true };
   return { apps: [
-    { ...base, id: "s1", createdAt: iso(now - 30*h), status: "pending", division: "U9 Tier 2", teamName: "Sample Team A", managerName: "Sample Manager A", email: "manager.a@example.com", playerCount: 14, notes: "Prefer no games before 9 am Friday.", log: "Applied" },
-    { ...base, id: "s2", createdAt: iso(now - 50*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team B", managerName: "Sample Manager B", email: "manager.b@example.com", playerCount: 12, approvedAt: iso(now - 2*h), log: "Applied\nStatus → Approved" },
+    { ...base, id: "s1", createdAt: iso(now - 30*h), status: "pending", division: "U9 Tier 2", teamName: "Sample Team A", managerName: "Sample Manager A", email: "manager.a@example.com", playerCount: 14, reciprocal: "Yes: Jan 23–25, Example Town, U9 Tier 2", log: "Applied" },
+    { ...base, id: "s2", createdAt: iso(now - 50*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team B", managerName: "Sample Manager B", email: "manager.b@example.com", playerCount: 11, tier: "Other – equivalent to Tier 2", approvedAt: iso(now - 2*h), log: "Applied\nStatus → Approved" },
     { ...base, id: "s3", createdAt: iso(now - 70*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team C", managerName: "Sample Manager C", email: "manager.c@example.com", playerCount: 13, token: "sampletokenc", approvedAt: iso(now - 21*h), approvalEmailSentAt: iso(now - 20*h), deadlineAt: iso(now + 28*h), log: "Applied\nStatus → Approved\nConfirmation email sent (48-hour clock started)" },
     { ...base, id: "s4", createdAt: iso(now - 120*h), status: "confirmed", division: "U9 Tier 2", teamName: "Sample Team D", managerName: "Sample Manager D", email: "manager.d@example.com", playerCount: 15, token: "sampletokend", approvedAt: iso(now - 91*h), approvalEmailSentAt: iso(now - 90*h), deadlineAt: iso(now - 42*h), rosterSubmittedAt: iso(now - 60*h), rosterJson: { players: [{name:"Example Player", jersey:"9", year:"2018", hcr:"", goalie:false}], staff: [{name:"Sample Coach", role:"Head coach", phone:""}] }, paymentNote: "e-Transfer sent", paidAt: iso(now - 50*h), confirmedAt: iso(now - 50*h), log: "Applied\nStatus → Approved\nConfirmation email sent\nRoster submitted\nMarked paid\nConfirmed" }
   ]};
@@ -625,27 +645,27 @@ function setupPublic(){
     const err = $("#applyError"); err.hidden = true;
     const f = Object.fromEntries(new FormData(form).entries());
     const missing = [];
-    if (!f.division) missing.push("division");
-    for (const [k, label] of [["teamName","team name"],["association","association"],["managerName","manager name"],["phone","phone"],["email","email"]]) if (!String(f[k] || "").trim()) missing.push(label);
+    for (const [k, label] of [["teamName","team name"],["association","association"],["homeCommunity","home community"],["playerCount","number of players"],["managerName","contact name"],["email","email"],["phone","phone"],["reciprocal","reciprocal invitation (or \"No\")"]]) if (!String(f[k] || "").trim()) missing.push(label);
     if (missing.length){ err.textContent = `Please add: ${missing.join(", ")}.`; err.hidden = false; return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())){ err.textContent = "That email address doesn't look right. Check it and try again."; err.hidden = false; return; }
-    if (!f.agree){ err.textContent = "Please confirm the roster and payment commitment."; err.hidden = false; return; }
+    if (!f.agree){ err.textContent = "Please agree to pay the $1,800 tournament fee within 48 hours of acceptance."; err.hidden = false; return; }
     const btn = $("#applyBtn"); btn.disabled = true; btn.textContent = "Submitting…";
     try {
       const application = {};
-      for (const k of ["division","teamName","association","hcrTeamNumber","playerCount","managerName","phone","email","coachName","notes","website"]) application[k] = String(f[k] || "").trim();
+      for (const k of ["division","teamName","association","homeCommunity","tier","playerCount","managerName","email","phone","reciprocal","website"]) application[k] = String(f[k] || "").trim();
+      application.agreeFee = "yes";
       await api("apply", { application });
       form.hidden = true;
       $("#successTeam").textContent = application.teamName;
       $("#successMsg").textContent = PREVIEW
         ? `Preview: on the live site, a confirmation email goes to ${application.email} and the organizers are notified.`
-        : `We've emailed a confirmation to ${application.email}. You'll hear from us once the committee reviews applications. If it doesn't arrive in a few minutes, check your spam folder.`;
+        : `We've emailed a confirmation to ${application.email}. Acceptance emails will be sent by October 25. If the confirmation doesn't arrive in a few minutes, check your spam folder.`;
       $("#applySuccess").hidden = false;
       $("#apply").scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (ex){ err.textContent = ex.message; err.hidden = false; }
     finally { btn.disabled = false; btn.textContent = "Submit application"; }
   });
-  $("#applyAnother").addEventListener("click", () => { form.reset(); $("#divT2").checked = true; form.hidden = false; $("#applySuccess").hidden = true; });
+  $("#applyAnother").addEventListener("click", () => { form.reset(); form.hidden = false; $("#applySuccess").hidden = true; });
 }
 
 /* ---------------- Snow (hero) ---------------- */
@@ -898,13 +918,14 @@ function appCard(a){
       <div class="app-top">
         <div>
           <div class="app-team">${esc(a.teamName)}</div>
-          <small>${esc(a.association)}${a.playerCount ? " · " + esc(a.playerCount) + " players" : ""}</small>
-          <div class="pills"><span class="pill">${esc(a.division)}</span><span class="pill ${pillCls}">${pillTxt}</span>${od ? `<span class="pill bad">Overdue</span>` : ""}${a.sample ? `<span class="pill sample">Sample</span>` : ""}</div>
+          <small>${esc(a.association)}${a.homeCommunity ? " · " + esc(a.homeCommunity) : ""}${a.playerCount ? " · " + esc(a.playerCount) + " players" : ""}</small>
+          <div class="pills"><span class="pill">${esc(a.division)}</span><span class="pill ${pillCls}">${pillTxt}</span>${a.tier && a.tier !== "Tier 2" ? `<span class="pill">${esc(a.tier)}</span>` : ""}${od ? `<span class="pill bad">Overdue</span>` : ""}${a.sample ? `<span class="pill sample">Sample</span>` : ""}</div>
         </div>
         <div>
           <div style="font-weight:600">${esc(a.managerName)}</div>
           <small>${esc(a.email)}</small><small>${esc(a.phone)}</small>
           <small>Applied ${fmtShort(a.createdAt)}</small>
+          ${a.reciprocal ? `<small><b>Reciprocal:</b> ${esc(a.reciprocal)}</small>` : ""}
         </div>
         <div class="checklist">${progress}</div>
       </div>
@@ -915,8 +936,10 @@ function appCard(a){
       <div class="email-line">${emailLine(a)}</div>
       <details class="more"><summary>Details</summary>
         <dl class="kv">
+          ${a.homeCommunity ? `<dt>Home community</dt><dd>${esc(a.homeCommunity)}</dd>` : ""}
+          <dt>Tier</dt><dd>${esc(a.tier || "Not answered")}</dd>
+          <dt>Reciprocal invite</dt><dd>${esc(a.reciprocal || "—")}</dd>
           ${a.coachName ? `<dt>Head coach</dt><dd>${esc(a.coachName)}</dd>` : ""}
-          ${a.hcrTeamNumber ? `<dt>HCR team #</dt><dd>${esc(a.hcrTeamNumber)}</dd>` : ""}
           ${a.notes ? `<dt>Notes</dt><dd>${esc(a.notes)}</dd>` : ""}
           ${a.deadlineAt && sent ? `<dt>Deadline</dt><dd>${fmtDate(a.deadlineAt)}</dd>` : ""}
           ${a.paymentNote ? `<dt>Payment note</dt><dd>${esc(a.paymentNote)}</dd>` : ""}
