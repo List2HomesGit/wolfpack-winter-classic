@@ -3,7 +3,7 @@
    Never put passwords here: this file is public. */
 window.WWC_CONFIG = {
   // Google Apps Script web app URL (ends in /exec). Empty = preview mode.
-  API_URL: "",
+  API_URL: "https://script.google.com/macros/s/AKfycby9bpJZw_he6ebTSztmsQ09HK84OHStnr1_lsIwODhz8GMn0puv1RghhgO0hTDt2B1iRQ/exec",
 
   HOST_LINE: "Hosted by Trails West Hockey Association",
   START: "2026-12-18T08:00:00-07:00",
