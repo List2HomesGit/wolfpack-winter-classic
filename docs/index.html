@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Wolfpack Winter Classic</title>
-<meta name="description" content="U9 Tier 2 and Tier 3 minor hockey tournament, December 18–20, 2026 in Dickson, Alberta.">
+<meta name="description" content="U9 Tier 2 minor hockey tournament, December 18–20, 2026 in Dickson, Alberta. Hockey Alberta sanction 26-900363.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="tournwolf-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,10 +106,16 @@ section.block{padding-block:clamp(3rem,7vw,5rem)}
 .fact .v{font:800 1.5rem/1.1 var(--display);text-transform:uppercase}
 .fact .s{font-size:.95rem;color:var(--muted)}
 
-.divisions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;margin-top:1.25rem}
-.div-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:.6rem}
+.divisions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:1.25rem;margin-top:1.25rem}
+.div-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:.6rem;align-content:start}
 .div-card .tier{font:900 3.2rem/.9 var(--display);text-transform:uppercase}
 .div-card .tier span{color:var(--red-text)}
+.sanction{font:600 .82rem/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sanction b{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.perks{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:1rem}
+.perks ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.5rem}
+.perks li{display:flex;gap:.75rem;align-items:center;font:800 1.2rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.perks svg{width:2.4rem;height:2.4rem;flex:none;padding:.45rem;border-radius:50%;background:color-mix(in srgb,var(--red) 12%,transparent);stroke:var(--red-text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;counter-reset:step}
 .steps li{counter-increment:step;display:grid;gap:.5rem;align-content:start;padding-top:1rem;border-top:3px solid var(--ink)}
@@ -158,11 +164,23 @@ td.idx{color:var(--muted);font-variant-numeric:tabular-nums;width:2.5rem}
 
 /* admin */
 .admin-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:1.5rem}
-.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.75rem;margin-bottom:1.5rem}
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.75rem;margin-bottom:1.5rem}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem 1rem;display:grid;gap:.25rem}
 .stat .n{font:900 2.2rem/1 var(--display);font-variant-numeric:tabular-nums}
 .stat .k{font:600 .74rem/1.2 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .stat.alert .n{color:var(--bad)}
+.stat.warn .n{color:var(--warn)}
+.howto{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--red);border-radius:var(--radius);padding:.85rem 1.1rem;margin-bottom:1.25rem;font-size:.95rem;max-width:56rem}
+.controls{display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:.8rem}
+.status-ctl{display:flex;align-items:center;gap:.5rem;font-weight:600;font-size:.9rem}
+.status-ctl select{width:auto;padding:.5rem 2rem .5rem .7rem;font-weight:600}
+.email-line{font-size:.88rem}
+.email-line .sent{color:var(--ok);font-weight:600}
+.email-line .unsent{color:var(--warn);font-weight:600}
+.pill.warn{background:var(--warn-bg);color:var(--warn)}
+.app[data-status="approved"][data-unsent="true"] .stripe{background:var(--red)}
+.btn.armed{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.kv dd.log{font-size:.86rem;color:var(--muted);line-height:1.6}
 .toolbar{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;justify-content:space-between;margin-bottom:1rem}
 .tabs{display:flex;flex-wrap:wrap;gap:.35rem}
 .tab{font:600 .88rem/1 var(--body);padding:.55rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
@@ -211,7 +229,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;
 footer a{color:var(--hero-fg)}
 
 @media (max-width:860px){
-  .hero-inner,.apply-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-inner,.apply-grid,.divisions{grid-template-columns:minmax(0,1fr)}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -219,7 +237,7 @@ footer a{color:var(--hero-fg)}
   .hero .faceoff{opacity:.08}
 }
 @media (max-width:520px){
-  .row,.choice,.divisions,.steps{grid-template-columns:minmax(0,1fr)}
+  .row,.choice,.divisions,.steps,.perks ul{grid-template-columns:minmax(0,1fr)}
   .topnav .hide-sm{display:none}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -230,7 +248,7 @@ footer a{color:var(--hero-fg)}
 <body>
 
 <div class="preview" id="previewBanner" hidden>
-  <div class="wrap"><strong>Preview mode.</strong><span>Nothing is saved to the Google Sheet and no emails are sent. The organizer dashboard accepts any key and shows sample teams.</span></div>
+  <div class="wrap"><strong>Preview mode.</strong><span>Nothing is saved to the Google Sheet and no emails are sent. Organizer sign-in accepts any password here and shows sample teams.</span></div>
 </div>
 
 <header class="topbar">
@@ -259,7 +277,6 @@ footer a{color:var(--hero-fg)}
           <h1>Wolfpack<br><span class="w">Winter</span><br>Classic</h1>
           <div class="hero-meta">
             <span class="tag red">U9 Tier 2</span>
-            <span class="tag red">U9 Tier 3</span>
             <span class="tag" id="heroDates">Dec 18–20, 2026</span>
             <span class="tag">Dickson, AB</span>
           </div>
@@ -277,7 +294,7 @@ footer a{color:var(--hero-fg)}
             <div class="board-label" id="countUnit" style="margin-top:.4rem">days</div>
           </div>
           <div class="board-row"><span class="board-label">Weekend</span><span class="board-val">Fri–Sun</span></div>
-          <div class="board-row"><span class="board-label">Divisions</span><span class="board-val">U9 T2 · U9 T3</span></div>
+          <div class="board-row"><span class="board-label">Division</span><span class="board-val">U9 Tier 2</span></div>
           <div class="board-row"><span class="board-label">Spots</span><span class="board-val" id="boardSpots">Limited</span></div>
         </div>
         </div>
@@ -290,17 +307,26 @@ footer a{color:var(--hero-fg)}
         <div class="section-head">
           <span class="eyebrow">Tournament details</span>
           <h2>A holiday weekend of U9 hockey</h2>
-          <p class="muted">Three days of games for U9 Tier 2 and Tier 3 teams to close out the first half of the season, just before the Christmas break.</p>
+          <p class="muted">Three days of U9 Tier 2 hockey in Dickson to close out the first half of the season, just before the Christmas break. Great competition, awards every game, and swag for every player.</p>
         </div>
         <div class="facts">
           <div class="fact"><span class="k">Dates</span><span class="v">Dec 18–20</span><span class="s">Friday to Sunday, 2026</span></div>
           <div class="fact"><span class="k">Location</span><span class="v">Dickson, AB</span><span class="s" id="venueLine">Arena details to follow</span></div>
-          <div class="fact"><span class="k">Divisions</span><span class="v">U9 T2 &amp; T3</span><span class="s">Tiered to keep games competitive</span></div>
+          <div class="fact"><span class="k">Sanction</span><span class="v num">26-900363</span><span class="s">Hockey Alberta sanctioned</span></div>
           <div class="fact"><span class="k">Entry fee</span><span class="v" id="feeVal">TBA</span><span class="s">Due within 48 hours of approval</span></div>
         </div>
         <div class="divisions">
-          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are accepted by the organizing committee.</p></div>
-          <div class="div-card"><div class="tier">U9 <span>Tier 3</span></div><p class="muted" id="spotsT3">Spots are limited. Teams are accepted by the organizing committee.</p></div>
+          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are accepted by the organizing committee.</p><p class="muted">Every game is U9 Tier 2, so teams play evenly matched opponents all weekend.</p></div>
+          <div class="perks">
+            <span class="eyebrow">Every team gets</span>
+            <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>Player awards every game</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0z"/></svg><span>Player swag provided</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a2 2 0 0 0 0 4v5h18v-5a2 2 0 0 1 0-4V5H3z"/><path d="M14 5v3M14 11v2M14 16v1"/></svg><span>Raffle</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="10" cy="15" r="1"/><circle cx="15" cy="15" r="1"/></svg><span>Snacks provided</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3l7 13a3 3 0 0 0 2.6 1.5H20"/><ellipse cx="18" cy="20.5" rx="3" ry="1.3"/></svg><span>Great competition and hockey</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -313,7 +339,7 @@ footer a{color:var(--hero-fg)}
         </div>
         <ol class="steps">
           <li><h3>Apply</h3><p>The team manager submits the form below. You'll get an email confirming we received it.</p></li>
-          <li><h3>Review</h3><p>The organizing committee reviews applications and builds balanced divisions.</p></li>
+          <li><h3>Review</h3><p>The organizing committee reviews applications and builds a balanced schedule.</p></li>
           <li><h3>Approval</h3><p>If your team is accepted, you'll get an email with a private link to submit your roster and pay the entry fee.</p></li>
           <li><h3>48 hours</h3><p>Submit your roster and payment within 48 hours of approval to lock in your spot.</p></li>
         </ol>
@@ -333,9 +359,8 @@ footer a{color:var(--hero-fg)}
           <form class="form" id="applyForm" novalidate>
             <fieldset>
               <legend>Division</legend>
-              <div class="choice" role="radiogroup">
-                <label><input type="radio" name="division" id="divT2" value="U9 Tier 2" required><span class="t">U9 Tier 2</span></label>
-                <label><input type="radio" name="division" id="divT3" value="U9 Tier 3"><span class="t">U9 Tier 3</span></label>
+              <div class="choice" style="grid-template-columns:minmax(0,1fr)">
+                <label><input type="radio" name="division" id="divT2" value="U9 Tier 2" checked required><span class="t">U9 Tier 2</span><span class="muted" style="margin-left:auto;font-size:.9rem">Dec 18–20 · Dickson, AB</span></label>
               </div>
             </fieldset>
             <fieldset>
@@ -441,23 +466,26 @@ footer a{color:var(--hero-fg)}
       <div class="wrap">
         <div class="login panel" id="loginBox">
           <span class="eyebrow">Organizers</span>
-          <h2>Team applications</h2>
+          <h2>Sign in</h2>
+          <p class="muted">For the tournament committee. Use your organizer email and the committee password.</p>
           <form id="loginForm" class="form" style="gap:1rem" novalidate>
-            <div class="field"><label for="adminKey">Organizer key</label><input type="password" id="adminKey" autocomplete="current-password"></div>
+            <div class="field"><label for="adminEmail">Email</label><input type="email" id="adminEmail" autocomplete="username" inputmode="email"></div>
+            <div class="field"><label for="adminKey">Password</label><input type="password" id="adminKey" autocomplete="current-password"></div>
             <p class="error" id="loginError" role="alert" hidden></p>
-            <button class="btn btn-red" type="submit" id="loginBtn">Open dashboard</button>
+            <button class="btn btn-red" type="submit" id="loginBtn">Sign in</button>
           </form>
         </div>
 
         <div id="dash" hidden>
           <div class="admin-head">
-            <div><span class="eyebrow">Organizer dashboard</span><h2 style="margin-top:.5rem">Team applications</h2></div>
+            <div><span class="eyebrow">Organizer dashboard</span><h2 style="margin-top:.5rem">Team applications</h2><p class="hint" id="whoami" style="margin-top:.5rem"></p></div>
             <div class="actions"><button class="btn btn-line btn-sm" id="refreshBtn" type="button">Refresh</button><button class="btn btn-line btn-sm" id="logoutBtn" type="button">Sign out</button></div>
           </div>
+          <div class="howto">Change a team's status to <b>Approved</b>, then click <b>Send confirmation email</b>. Nothing is emailed when you change a status, and the team's 48-hour roster and payment deadline starts when the email is sent.</div>
           <div class="stats" id="stats"></div>
           <div class="toolbar">
             <div class="tabs" id="statusTabs" role="group" aria-label="Filter by status"></div>
-            <select id="divFilter" aria-label="Filter by division"><option value="">Both divisions</option><option>U9 Tier 2</option><option>U9 Tier 3</option></select>
+            <select id="divFilter" aria-label="Filter by division" hidden><option value="">All divisions</option><option>U9 Tier 2</option></select>
           </div>
           <div class="apps" id="apps"></div>
         </div>
@@ -468,31 +496,25 @@ footer a{color:var(--hero-fg)}
 
 <footer>
   <div class="wrap">
-    <span>Wolfpack Winter Classic · December 18–20, 2026 · Dickson, Alberta</span>
+    <span>Wolfpack Winter Classic · U9 Tier 2 · December 18–20, 2026 · Dickson, Alberta · Sanction 26-900363</span>
     <a href="#admin" id="adminLink">Organizer login</a>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" hidden></div>
 
+<script src="config.js"></script>
 <script>
-/* ============================================================
-   SETTINGS — edit these, then redeploy.
-   API_URL: your Google Apps Script web app URL (ends in /exec).
-   Leave it empty to run the site in preview mode.
-   ============================================================ */
-const CONFIG = {
+/* Settings live in config.js (loaded before this script). These defaults apply if it's missing. */
+const CONFIG = Object.assign({
   API_URL: "",
   HOST_LINE: "Hosted by the Trails West Wolves",
   START: "2026-12-18T08:00:00-07:00",
-  VENUE: "",                 // e.g. "Dickson Arena, 123 Main St"
-  ENTRY_FEE: "",             // e.g. "$1,250 per team"
-  ETRANSFER_EMAIL: "",       // where teams send Interac e-Transfers
-  PAYMENT_LINK: "",          // optional online payment link (Stripe, Square…)
-  CONTACT_EMAIL: "",         // shown publicly for questions
-  SPOTS: { "U9 Tier 2": 0, "U9 Tier 3": 0 },   // 0 = don't show a number
-  PAYMENT_WINDOW_HOURS: 48
-};
+  VENUE: "", ENTRY_FEE: "", ETRANSFER_EMAIL: "", PAYMENT_LINK: "", CONTACT_EMAIL: "",
+  SPOTS: { "U9 Tier 2": 0 },
+  PAYMENT_WINDOW_HOURS: 48,
+  ORGANIZERS: []
+}, window.WWC_CONFIG || {});
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -523,43 +545,60 @@ async function api(action, payload = {}){
 
 /* Preview-only stand-in for the Apps Script backend. Sample teams are clearly labelled. */
 const mock = (() => {
-  const now = Date.now(), h = 3600e3;
-  const base = { association: "Example MHA", hcrTeamNumber: "", phone: "403-555-0100", coachName: "Sample Coach", notes: "", rosterJson: null, rosterFileUrl: "", paymentNote: "", paidAt: "", confirmedAt: "", sample: true };
+  const now = Date.now(), h = 3600e3, iso = t => new Date(t).toISOString();
+  const base = { association: "Example MHA", hcrTeamNumber: "", phone: "403-555-0100", coachName: "Sample Coach", notes: "", rosterJson: null, rosterFileUrl: "", paymentNote: "", paidAt: "", confirmedAt: "", approvedAt: "", approvalEmailSentAt: "", decisionEmailSentAt: "", deadlineAt: "", rosterSubmittedAt: "", token: "", updatedBy: "", log: "", sample: true };
   return { apps: [
-    { ...base, id: "s1", createdAt: new Date(now - 30*h).toISOString(), status: "pending", division: "U9 Tier 2", teamName: "Sample Team A", managerName: "Sample Manager A", email: "manager.a@example.com", playerCount: 14, notes: "Prefer no games before 9 am Friday." },
-    { ...base, id: "s2", createdAt: new Date(now - 70*h).toISOString(), status: "approved", division: "U9 Tier 3", teamName: "Sample Team B", managerName: "Sample Manager B", email: "manager.b@example.com", playerCount: 13, token: "sampletokenb", approvedAt: new Date(now - 20*h).toISOString(), deadlineAt: new Date(now + 28*h).toISOString() },
-    { ...base, id: "s3", createdAt: new Date(now - 120*h).toISOString(), status: "confirmed", division: "U9 Tier 2", teamName: "Sample Team C", managerName: "Sample Manager C", email: "manager.c@example.com", playerCount: 15, token: "sampletokenc", approvedAt: new Date(now - 90*h).toISOString(), deadlineAt: new Date(now - 42*h).toISOString(), rosterSubmittedAt: new Date(now - 60*h).toISOString(), rosterJson: { players: [{name:"Example Player", jersey:"9", year:"2018", hcr:"", goalie:false}], staff: [{name:"Sample Coach", role:"Head coach", phone:""}] }, paymentNote: "e-Transfer sent", paidAt: new Date(now - 50*h).toISOString(), confirmedAt: new Date(now - 50*h).toISOString() }
+    { ...base, id: "s1", createdAt: iso(now - 30*h), status: "pending", division: "U9 Tier 2", teamName: "Sample Team A", managerName: "Sample Manager A", email: "manager.a@example.com", playerCount: 14, notes: "Prefer no games before 9 am Friday.", log: "Applied" },
+    { ...base, id: "s2", createdAt: iso(now - 50*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team B", managerName: "Sample Manager B", email: "manager.b@example.com", playerCount: 12, approvedAt: iso(now - 2*h), log: "Applied\nStatus → Approved" },
+    { ...base, id: "s3", createdAt: iso(now - 70*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team C", managerName: "Sample Manager C", email: "manager.c@example.com", playerCount: 13, token: "sampletokenc", approvedAt: iso(now - 21*h), approvalEmailSentAt: iso(now - 20*h), deadlineAt: iso(now + 28*h), log: "Applied\nStatus → Approved\nConfirmation email sent (48-hour clock started)" },
+    { ...base, id: "s4", createdAt: iso(now - 120*h), status: "confirmed", division: "U9 Tier 2", teamName: "Sample Team D", managerName: "Sample Manager D", email: "manager.d@example.com", playerCount: 15, token: "sampletokend", approvedAt: iso(now - 91*h), approvalEmailSentAt: iso(now - 90*h), deadlineAt: iso(now - 42*h), rosterSubmittedAt: iso(now - 60*h), rosterJson: { players: [{name:"Example Player", jersey:"9", year:"2018", hcr:"", goalie:false}], staff: [{name:"Sample Coach", role:"Head coach", phone:""}] }, paymentNote: "e-Transfer sent", paidAt: iso(now - 50*h), confirmedAt: iso(now - 50*h), log: "Applied\nStatus → Approved\nConfirmation email sent\nRoster submitted\nMarked paid\nConfirmed" }
   ]};
 })();
 async function mockApi(action, p){
-  await new Promise(r => setTimeout(r, 450));
-  const find = t => mock.apps.find(a => a.token === t);
+  await new Promise(r => setTimeout(r, 400));
+  const find = t => mock.apps.find(a => a.token && a.token === t);
+  const nowIso = () => new Date().toISOString();
+  const log = (a, text, who) => { a.log = [a.log, text + (who ? " · " + who : "")].filter(Boolean).join("\n"); };
   switch (action){
     case "apply": {
-      const a = { ...p.application, id: "p" + Date.now(), createdAt: new Date().toISOString(), status: "pending" };
+      const a = { ...p.application, id: "p" + Date.now(), createdAt: nowIso(), status: "pending", log: "Applied" };
       mock.apps.unshift(a); return { ok: true, id: a.id };
     }
     case "team": {
-      const a = find(p.token); if (!a) throw new Error("This roster link isn't valid. Check the link in your approval email.");
+      const a = find(p.token); if (!a) throw new Error("This roster link isn't valid. Check the link in your confirmation email.");
       return { ok: true, team: pickTeam(a) };
     }
     case "roster": {
       const a = find(p.token); if (!a) throw new Error("This roster link isn't valid.");
-      a.rosterJson = p.roster; a.paymentNote = p.paymentNote; a.rosterSubmittedAt = new Date().toISOString();
+      a.rosterJson = p.roster; a.paymentNote = p.paymentNote; a.rosterSubmittedAt = nowIso();
       if (p.file) a.rosterFileUrl = "#preview-file";
+      log(a, "Roster submitted by manager");
       return { ok: true, team: pickTeam(a) };
     }
-    case "list": return { ok: true, apps: mock.apps };
+    case "login": {
+      const email = String(p.email || "").trim().toLowerCase();
+      if (!CONFIG.ORGANIZERS.map(x => x.toLowerCase()).includes(email) || !p.password) throw new Error("That email and password don’t match an organizer account.");
+      return { ok: true, session: "preview-" + email, email };
+    }
+    case "logout": return { ok: true };
+    case "list": return { ok: true, email: String(p.session).replace("preview-", ""), apps: mock.apps };
     case "update": {
+      const who = String(p.session).replace("preview-", "");
       const a = mock.apps.find(x => x.id === p.id); const now = new Date();
-      if (p.op === "approve"){ a.status = "approved"; a.token = a.token || ("t" + Math.random().toString(36).slice(2)); a.approvedAt = now.toISOString(); a.deadlineAt = new Date(+now + CONFIG.PAYMENT_WINDOW_HOURS*3600e3).toISOString(); }
-      if (p.op === "decline") a.status = "declined";
-      if (p.op === "waitlist") a.status = "waitlisted";
-      if (p.op === "reopen") a.status = "pending";
-      if (p.op === "markPaid") a.paidAt = now.toISOString();
-      if (p.op === "unmarkPaid"){ a.paidAt = ""; if (a.status === "confirmed") a.status = "approved"; }
-      if (p.op === "extend") a.deadlineAt = new Date(+new Date(a.deadlineAt || now) + 24*3600e3).toISOString();
-      if (a.status === "approved" && a.paidAt && a.rosterSubmittedAt){ a.status = "confirmed"; a.confirmedAt = now.toISOString(); }
+      if (p.op === "setStatus"){ if (a.status !== p.value){ if (p.value === "approved" && !a.approvedAt) a.approvedAt = now.toISOString(); a.status = p.value; a.decisionEmailSentAt = ""; log(a, "Status → " + STATUS_LABEL[p.value], who); } }
+      if (p.op === "sendEmail"){
+        if (a.status === "approved" || a.status === "confirmed"){
+          const first = !a.approvalEmailSentAt;
+          a.token = a.token || ("t" + Math.random().toString(36).slice(2));
+          a.approvalEmailSentAt = now.toISOString();
+          if (first) a.deadlineAt = new Date(+now + CONFIG.PAYMENT_WINDOW_HOURS*3600e3).toISOString();
+          log(a, first ? "Confirmation email sent (48-hour clock started)" : "Confirmation email resent", who);
+        } else if (a.status === "declined" || a.status === "waitlisted"){ a.decisionEmailSentAt = now.toISOString(); log(a, (a.status === "declined" ? "Decline" : "Waitlist") + " email sent", who); }
+      }
+      if (p.op === "markPaid"){ a.paidAt = now.toISOString(); log(a, "Marked paid", who); }
+      if (p.op === "unmarkPaid"){ a.paidAt = ""; if (a.status === "confirmed"){ a.status = "approved"; a.confirmedAt = ""; } log(a, "Payment unmarked", who); }
+      if (p.op === "extend"){ a.deadlineAt = new Date(Math.max(+new Date(a.deadlineAt || now), +now) + 24*3600e3).toISOString(); log(a, "Deadline extended 24 hours", who); }
+      if (a.status === "approved" && a.paidAt && a.rosterSubmittedAt){ a.status = "confirmed"; a.confirmedAt = now.toISOString(); log(a, "Confirmed (roster + payment in); final email sent", who); }
       return { ok: true, app: a };
     }
   }
@@ -572,10 +611,9 @@ function setupPublic(){
   $("#hostLine").textContent = CONFIG.HOST_LINE;
   if (CONFIG.VENUE) $("#venueLine").textContent = CONFIG.VENUE;
   if (CONFIG.ENTRY_FEE) $("#feeVal").textContent = CONFIG.ENTRY_FEE;
-  const sT2 = CONFIG.SPOTS["U9 Tier 2"], sT3 = CONFIG.SPOTS["U9 Tier 3"];
+  const sT2 = CONFIG.SPOTS["U9 Tier 2"];
   if (sT2) $("#spotsT2").textContent = `${sT2} team spots. Teams are accepted by the organizing committee.`;
-  if (sT3) $("#spotsT3").textContent = `${sT3} team spots. Teams are accepted by the organizing committee.`;
-  if (sT2 && sT3) $("#boardSpots").textContent = `${sT2 + sT3} teams`;
+  if (sT2) $("#boardSpots").textContent = `${sT2} teams`;
   if (CONFIG.CONTACT_EMAIL){ const c = $("#contactLine"); c.hidden = false; c.innerHTML = `Questions? Email <a href="mailto:${esc(CONFIG.CONTACT_EMAIL)}">${esc(CONFIG.CONTACT_EMAIL)}</a>`; }
   const days = Math.ceil((new Date(CONFIG.START) - Date.now()) / 86400e3);
   if (days > 0){ $("#countDays").textContent = days; $("#countUnit").textContent = days === 1 ? "day" : "days"; }
@@ -607,7 +645,7 @@ function setupPublic(){
     } catch (ex){ err.textContent = ex.message; err.hidden = false; }
     finally { btn.disabled = false; btn.textContent = "Submit application"; }
   });
-  $("#applyAnother").addEventListener("click", () => { form.reset(); form.hidden = false; $("#applySuccess").hidden = true; });
+  $("#applyAnother").addEventListener("click", () => { form.reset(); $("#divT2").checked = true; form.hidden = false; $("#applySuccess").hidden = true; });
 }
 
 /* ---------------- Snow (hero) ---------------- */
@@ -723,38 +761,67 @@ function setupRoster(){
 }
 
 /* ---------------- Organizer dashboard ---------------- */
-const adm = { key: null, apps: [], status: "all", div: "" };
-const STATUS_TABS = [["all","All"],["pending","To review"],["approved","Awaiting roster/payment"],["confirmed","Confirmed"],["waitlisted","Waitlist"],["declined","Declined"]];
-const isOverdue = a => a.status === "approved" && a.deadlineAt && new Date(a.deadlineAt) < Date.now() && !(a.rosterSubmittedAt && a.paidAt);
+const STATUS_LABEL = { pending: "To review", approved: "Approved", waitlisted: "Waitlist", declined: "Declined", confirmed: "Confirmed" };
+const adm = { session: null, email: "", apps: [], status: "all", div: "" };
+const SESSION_KEY = "wwc-session";
+const sessionStore = {
+  get(){ try { return localStorage.getItem(SESSION_KEY); } catch { return store.get(SESSION_KEY); } },
+  set(v){ try { v == null ? localStorage.removeItem(SESSION_KEY) : localStorage.setItem(SESSION_KEY, v); } catch { store.set(SESSION_KEY, v); } }
+};
+const TABS = [["all","All"],["pending","To review"],["approved","Approved"],["confirmed","Confirmed"],["waitlisted","Waitlist"],["declined","Declined"]];
+const emailSent = a => !!a.approvalEmailSentAt;
+const needsEmail = a => (a.status === "approved" && !emailSent(a)) || ((a.status === "declined" || a.status === "waitlisted") && !a.decisionEmailSentAt);
+const isOverdue = a => a.status === "approved" && emailSent(a) && a.deadlineAt && new Date(a.deadlineAt) < Date.now() && !(a.rosterSubmittedAt && a.paidAt);
+
+function showDash(on){ $("#loginBox").hidden = on; $("#dash").hidden = !on; }
+function signedOut(msg){
+  adm.session = null; sessionStore.set(null); showDash(false);
+  if (msg){ const e = $("#loginError"); e.textContent = msg; e.hidden = false; }
+}
+async function adminApi(action, payload = {}){
+  try { return await api(action, { session: adm.session, ...payload }); }
+  catch (ex){ if (/session has ended|sign in again/i.test(ex.message)) signedOut(ex.message); throw ex; }
+}
 
 function setupAdmin(){
   $("#loginForm").addEventListener("submit", async e => {
     e.preventDefault();
-    const key = $("#adminKey").value.trim(), err = $("#loginError"); err.hidden = true;
-    if (!key){ err.textContent = "Enter the organizer key."; err.hidden = false; return; }
-    const btn = $("#loginBtn"); btn.disabled = true;
-    try { adm.key = key; await loadApps(); store.set("wwc-key", key); $("#loginBox").hidden = true; $("#dash").hidden = false; }
-    catch (ex){ adm.key = null; err.textContent = ex.message; err.hidden = false; }
-    finally { btn.disabled = false; }
+    const email = $("#adminEmail").value.trim(), password = $("#adminKey").value, err = $("#loginError"); err.hidden = true;
+    if (!email || !password){ err.textContent = "Enter your email and the organizer password."; err.hidden = false; return; }
+    const btn = $("#loginBtn"); btn.disabled = true; btn.textContent = "Signing in…";
+    try {
+      const r = await api("login", { email, password });
+      adm.session = r.session; adm.email = r.email; sessionStore.set(r.session);
+      $("#adminKey").value = "";
+      await loadApps(); showDash(true);
+    } catch (ex){ err.textContent = ex.message; err.hidden = false; }
+    finally { btn.disabled = false; btn.textContent = "Sign in"; }
   });
   $("#refreshBtn").addEventListener("click", () => loadApps().then(() => toast("Up to date")).catch(ex => toast(ex.message)));
-  $("#logoutBtn").addEventListener("click", () => { store.set("wwc-key", null); adm.key = null; $("#dash").hidden = true; $("#loginBox").hidden = false; $("#adminKey").value = ""; });
+  $("#logoutBtn").addEventListener("click", () => { api("logout", { session: adm.session }).catch(() => {}); signedOut(); });
   $("#divFilter").addEventListener("change", e => { adm.div = e.target.value; renderApps(); });
   $("#statusTabs").addEventListener("click", e => { const b = e.target.closest("[data-status]"); if (!b) return; adm.status = b.dataset.status; renderApps(); });
   $("#apps").addEventListener("click", onAppAction);
+  $("#apps").addEventListener("change", onStatusChange);
 }
-async function loadApps(){ const { apps } = await api("list", { key: adm.key }); adm.apps = apps; renderApps(); }
+async function loadApps(){
+  const r = await adminApi("list");
+  adm.apps = r.apps; if (r.email) adm.email = r.email;
+  $("#whoami").textContent = `Signed in as ${adm.email}` + (PREVIEW ? " (preview: sample teams, no emails sent)" : "");
+  renderApps();
+}
 
 function renderApps(){
   const A = adm.apps;
   const c = s => A.filter(a => a.status === s).length;
+  const ready = A.filter(a => a.status === "approved" && !emailSent(a)).length;
+  const awaiting = A.filter(a => a.status === "approved" && emailSent(a)).length;
   const overdue = A.filter(isOverdue).length;
   $("#stats").innerHTML = [
-    ["Applied", A.length], ["To review", c("pending")], ["Awaiting", c("approved")], ["Confirmed", c("confirmed")], ["Overdue", overdue, overdue ? "alert" : ""]
-  ].map(([k, n, cls]) => `<div class="stat ${cls || ""}"><span class="n">${n}</span><span class="k">${k}</span></div>`).join("")
-   + "";
-  const byDiv = d => A.filter(a => a.division === d && a.status === "confirmed").length;
-  $("#statusTabs").innerHTML = STATUS_TABS.map(([s, l]) => {
+    ["Applied", A.length], ["To review", c("pending")], ["Approved, email not sent", ready, ready ? "warn" : ""],
+    ["Awaiting roster/payment", awaiting], ["Confirmed", c("confirmed")], ["Overdue", overdue, overdue ? "alert" : ""]
+  ].map(([k, n, cls]) => `<div class="stat ${cls || ""}"><span class="n">${n}</span><span class="k">${k}</span></div>`).join("");
+  $("#statusTabs").innerHTML = TABS.map(([s, l]) => {
     const n = s === "all" ? A.length : c(s);
     return `<button type="button" class="tab" data-status="${s}" aria-pressed="${adm.status === s}">${l} <span class="num muted">${n}</span></button>`;
   }).join("");
@@ -762,72 +829,130 @@ function renderApps(){
                .sort((a, b) => order(a) - order(b) || new Date(a.createdAt) - new Date(b.createdAt));
   if (!A.length){ $("#apps").innerHTML = `<div class="empty">No applications yet. They'll appear here as soon as a manager submits the form on the public page.</div>`; return; }
   if (!list.length){ $("#apps").innerHTML = `<div class="empty">No teams match this filter.</div>`; return; }
+  const byDiv = d => A.filter(a => a.division === d && a.status === "confirmed").length;
+  const spots = d => CONFIG.SPOTS[d] ? " of " + CONFIG.SPOTS[d] : "";
   $("#apps").innerHTML = list.map(appCard).join("") +
-    `<p class="hint" style="margin-top:.5rem">Confirmed so far: U9 Tier 2 — ${byDiv("U9 Tier 2")}${CONFIG.SPOTS["U9 Tier 2"] ? " of " + CONFIG.SPOTS["U9 Tier 2"] : ""} · U9 Tier 3 — ${byDiv("U9 Tier 3")}${CONFIG.SPOTS["U9 Tier 3"] ? " of " + CONFIG.SPOTS["U9 Tier 3"] : ""}</p>`;
+    `<p class="hint" style="margin-top:.5rem">Confirmed so far: ${byDiv("U9 Tier 2")}${spots("U9 Tier 2")} teams</p>`;
 }
-function order(a){ return isOverdue(a) ? 0 : ({pending:1, approved:2, waitlisted:3, confirmed:4, declined:5}[a.status] ?? 6); }
+function order(a){
+  if (isOverdue(a)) return 0;
+  if (a.status === "approved" && !emailSent(a)) return 1;
+  return ({pending:2, approved:3, waitlisted:4, confirmed:5, declined:6}[a.status] ?? 7);
+}
 function timeLeft(a){
   const ms = new Date(a.deadlineAt) - Date.now(), abs = Math.abs(ms), h = Math.floor(abs/3600e3), m = Math.floor(abs%3600e3/60e3);
   return ms >= 0 ? `Due in ${h}h ${m}m` : `Overdue by ${h}h ${m}m`;
 }
+function emailLine(a){
+  if (a.status === "approved" || a.status === "confirmed"){
+    return emailSent(a)
+      ? `<span class="sent">Confirmation email sent ${fmtDate(a.approvalEmailSentAt)}</span>`
+      : `<span class="unsent">Confirmation email not sent yet</span>`;
+  }
+  if (a.status === "declined" || a.status === "waitlisted"){
+    return a.decisionEmailSentAt ? `<span class="sent">${a.status === "declined" ? "Decline" : "Waitlist"} email sent ${fmtDate(a.decisionEmailSentAt)}</span>` : `<span class="muted">No email sent</span>`;
+  }
+  return `<span class="muted">Applied ${fmtDate(a.createdAt)}</span>`;
+}
 function appCard(a){
-  const od = isOverdue(a);
-  const statusLabel = {pending:"To review", approved:"Awaiting roster/payment", confirmed:"Confirmed", waitlisted:"Waitlist", declined:"Declined"}[a.status] || a.status;
-  const showProgress = ["approved","confirmed"].includes(a.status);
-  const btn = (op, label, cls = "btn-line", extra = "") => `<button type="button" class="btn ${cls} btn-sm" data-op="${op}" data-id="${esc(a.id)}" ${extra}>${label}</button>`;
+  const od = isOverdue(a), sent = emailSent(a);
+  const pillCls = a.status === "approved" && !sent ? "warn" : a.status;
+  const pillTxt = a.status === "approved" ? (sent ? "Awaiting roster/payment" : "Approved, email not sent") : STATUS_LABEL[a.status] || a.status;
+  const btn = (op, text, cls = "btn-line", extra = "") => `<button type="button" class="btn ${cls} btn-sm" data-op="${op}" data-id="${esc(a.id)}" ${extra}>${text}</button>`;
+
+  const statusCtl = a.status === "confirmed"
+    ? `<span class="pill confirmed">Confirmed</span>`
+    : `<label class="status-ctl"><span>Status</span><select data-op="setStatus" data-id="${esc(a.id)}" aria-label="Status for ${esc(a.teamName)}">${["pending","approved","waitlisted","declined"].map(s => `<option value="${s}" ${a.status === s ? "selected" : ""}>${STATUS_LABEL[s]}</option>`).join("")}</select></label>`;
+
   const acts = [];
-  if (a.status === "pending" || a.status === "waitlisted") acts.push(btn("approve", "Approve &amp; send roster email", "btn-red", `data-confirm="Confirm: email ${esc(a.email)}"`));
-  if (a.status === "pending") acts.push(btn("waitlist", "Waitlist"));
-  if (a.status === "approved" || a.status === "confirmed") acts.push(a.paidAt ? btn("unmarkPaid", "Undo paid") : btn("markPaid", "Mark paid", "btn-red"));
-  if (a.status === "approved") acts.push(btn("extend", "Extend 24h"));
-  if (a.status === "approved" || a.status === "confirmed"){ acts.push(btn("resend", "Resend email")); acts.push(btn("rosterlink", PREVIEW ? "Open roster form" : "Copy roster link")); }
-  if (["pending","waitlisted","approved"].includes(a.status)) acts.push(btn("decline", "Decline", "btn-line", `data-confirm="Confirm decline"`));
-  if (a.status === "declined") acts.push(btn("reopen", "Move back to review"));
+  if (a.status === "approved" && !sent) acts.push(btn("sendEmail", "Send confirmation email", "btn-red", `data-confirm="Send to ${esc(a.email)}?"`));
+  if (a.status === "approved" && sent){
+    acts.push(a.paidAt ? btn("unmarkPaid", "Undo paid") : btn("markPaid", "Mark paid", "btn-red"));
+    acts.push(btn("extend", "Extend 24h"));
+    acts.push(btn("sendEmail", "Resend confirmation email", "btn-line", `data-confirm="Resend to ${esc(a.email)}?"`));
+  }
+  if (a.status === "confirmed"){ acts.push(btn("unmarkPaid", "Undo paid")); acts.push(btn("sendEmail", "Resend confirmed email", "btn-line", `data-confirm="Resend to ${esc(a.email)}?"`)); }
+  if ((a.status === "approved" && sent) || a.status === "confirmed") acts.push(btn("rosterlink", PREVIEW ? "Open roster form" : "Copy roster link"));
+  if (a.status === "declined" && !a.decisionEmailSentAt) acts.push(btn("sendEmail", "Send decline email", "btn-line", `data-confirm="Send to ${esc(a.email)}?"`));
+  if (a.status === "waitlisted" && !a.decisionEmailSentAt) acts.push(btn("sendEmail", "Send waitlist email", "btn-line", `data-confirm="Send to ${esc(a.email)}?"`));
+
+  let progress = "";
+  if ((a.status === "approved" && sent) || a.status === "confirmed"){
+    progress = `<div><span class="dot ${a.rosterSubmittedAt ? "on" : od ? "late" : ""}"></span>Roster ${a.rosterSubmittedAt ? "received " + fmtShort(a.rosterSubmittedAt) : "not yet"}</div>
+      <div><span class="dot ${a.paidAt ? "on" : od ? "late" : ""}"></span>Payment ${a.paidAt ? "marked paid" : a.paymentNote ? "reported, needs checking" : "not yet"}</div>
+      ${a.status === "approved" ? `<div class="num" style="font-weight:600;color:${od ? "var(--bad)" : "var(--ink)"}">${timeLeft(a)}</div>` : ""}`;
+  } else if (a.status === "approved"){
+    progress = `<div class="muted">The 48-hour clock starts when you send the confirmation email.</div>`;
+  } else if (a.status === "pending"){
+    progress = `<div class="muted">Waiting for a decision</div>`;
+  }
 
   const r = a.rosterJson;
   const rosterTable = r?.players?.length ? `<div class="table-scroll" style="margin-top:.6rem"><table><thead><tr><th>#</th><th>Player</th><th>Jersey</th><th>Year</th><th>HCR</th><th>G</th></tr></thead><tbody>${r.players.map((p, i) => `<tr><td class="idx">${i+1}</td><td>${esc(p.name)}</td><td class="num">${esc(p.jersey)}</td><td class="num">${esc(p.year)}</td><td>${esc(p.hcr)}</td><td>${p.goalie ? "G" : ""}</td></tr>`).join("")}</tbody></table></div>` : "";
   const staffList = r?.staff?.length ? r.staff.map(s => `${esc(s.name)} (${esc(s.role)}${s.phone ? ", " + esc(s.phone) : ""})`).join("; ") : "";
+  const logHtml = a.log ? `<dt>Activity</dt><dd class="log">${String(a.log).split("\n").reverse().map(esc).join("<br>")}</dd>` : "";
 
-  return `<article class="app" data-status="${esc(a.status)}" data-overdue="${od}">
+  return `<article class="app" data-status="${esc(a.status)}" data-unsent="${a.status === "approved" && !sent}" data-overdue="${od}">
     <div class="stripe"></div>
     <div class="app-body">
       <div class="app-top">
         <div>
           <div class="app-team">${esc(a.teamName)}</div>
           <small>${esc(a.association)}${a.playerCount ? " · " + esc(a.playerCount) + " players" : ""}</small>
-          <div class="pills"><span class="pill">${esc(a.division)}</span><span class="pill ${esc(a.status)}">${statusLabel}</span>${od ? `<span class="pill bad">Overdue</span>` : ""}${a.sample ? `<span class="pill sample">Sample</span>` : ""}</div>
+          <div class="pills"><span class="pill">${esc(a.division)}</span><span class="pill ${pillCls}">${pillTxt}</span>${od ? `<span class="pill bad">Overdue</span>` : ""}${a.sample ? `<span class="pill sample">Sample</span>` : ""}</div>
         </div>
         <div>
           <div style="font-weight:600">${esc(a.managerName)}</div>
           <small>${esc(a.email)}</small><small>${esc(a.phone)}</small>
           <small>Applied ${fmtShort(a.createdAt)}</small>
         </div>
-        <div class="checklist">
-          ${showProgress ? `
-          <div><span class="dot ${a.rosterSubmittedAt ? "on" : od ? "late" : ""}"></span>Roster ${a.rosterSubmittedAt ? "received " + fmtShort(a.rosterSubmittedAt) : "not yet"}</div>
-          <div><span class="dot ${a.paidAt ? "on" : od ? "late" : ""}"></span>Payment ${a.paidAt ? "marked paid" : a.paymentNote ? "reported, needs checking" : "not yet"}</div>
-          ${a.status === "approved" ? `<div class="num" style="font-weight:600;color:${od ? "var(--bad)" : "var(--ink)"}">${timeLeft(a)}</div>` : ""}` : `<span class="muted">${a.status === "pending" ? "Waiting for a decision" : ""}</span>`}
-        </div>
+        <div class="checklist">${progress}</div>
       </div>
-      <div class="actions">${acts.join("")}</div>
+      <div class="controls">
+        ${statusCtl}
+        <div class="actions">${acts.join("")}</div>
+      </div>
+      <div class="email-line">${emailLine(a)}</div>
       <details class="more"><summary>Details</summary>
         <dl class="kv">
           ${a.coachName ? `<dt>Head coach</dt><dd>${esc(a.coachName)}</dd>` : ""}
           ${a.hcrTeamNumber ? `<dt>HCR team #</dt><dd>${esc(a.hcrTeamNumber)}</dd>` : ""}
           ${a.notes ? `<dt>Notes</dt><dd>${esc(a.notes)}</dd>` : ""}
-          ${a.approvedAt ? `<dt>Approved</dt><dd>${fmtDate(a.approvedAt)}</dd>` : ""}
-          ${a.deadlineAt ? `<dt>Deadline</dt><dd>${fmtDate(a.deadlineAt)}</dd>` : ""}
+          ${a.deadlineAt && sent ? `<dt>Deadline</dt><dd>${fmtDate(a.deadlineAt)}</dd>` : ""}
           ${a.paymentNote ? `<dt>Payment note</dt><dd>${esc(a.paymentNote)}</dd>` : ""}
           ${staffList ? `<dt>Staff</dt><dd>${staffList}</dd>` : ""}
           ${a.rosterFileUrl ? `<dt>Roster file</dt><dd>${a.rosterFileUrl.startsWith("http") ? `<a href="${esc(a.rosterFileUrl)}" target="_blank" rel="noopener">Open in Google Drive</a>` : "Uploaded (preview)"}</dd>` : ""}
+          ${logHtml}
         </dl>
         ${rosterTable}
       </details>
     </div>
   </article>`;
 }
+
+async function runOp(id, op, value, el){
+  const a = adm.apps.find(x => x.id === id);
+  if (el) el.disabled = true;
+  try {
+    const { app } = await adminApi("update", { id, op, value });
+    Object.assign(a, app); renderApps();
+    const pfx = PREVIEW ? "Preview: " : "";
+    const msgs = {
+      setStatus: `${a.teamName} moved to ${STATUS_LABEL[value]}. No email sent.`,
+      sendEmail: a.status === "declined" ? `Decline email sent to ${a.email}.` : a.status === "waitlisted" ? `Waitlist email sent to ${a.email}.` : `Confirmation email sent to ${a.email}. Roster and payment due ${fmtDate(a.deadlineAt)}`,
+      markPaid: a.status === "confirmed" ? "Marked paid. The team is confirmed and the manager has been emailed." : "Marked paid.",
+      unmarkPaid: "Payment unmarked.",
+      extend: "Deadline extended by 24 hours. The manager has been emailed."
+    };
+    toast(pfx + (msgs[op] || "Updated."));
+  } catch (ex){ toast(ex.message); renderApps(); }
+}
+function onStatusChange(e){
+  const s = e.target.closest("select[data-op='setStatus']"); if (!s) return;
+  runOp(s.dataset.id, "setStatus", s.value, s);
+}
 async function onAppAction(e){
-  const b = e.target.closest("[data-op]"); if (!b) return;
+  const b = e.target.closest("button[data-op]"); if (!b) return;
   const { op, id } = b.dataset; const a = adm.apps.find(x => x.id === id);
   if (op === "rosterlink"){
     if (PREVIEW){ showView("roster"); showRoster(a.token); scrollTo({top:0}); return; }
@@ -836,17 +961,11 @@ async function onAppAction(e){
     return;
   }
   if (b.dataset.confirm && !b.dataset.armed){
-    b.dataset.armed = "1"; const old = b.innerHTML; b.textContent = b.dataset.confirm;
-    setTimeout(() => { if (b.isConnected){ delete b.dataset.armed; b.innerHTML = old; } }, 4000);
+    b.dataset.armed = "1"; const old = b.innerHTML; b.textContent = b.dataset.confirm; b.classList.add("armed");
+    setTimeout(() => { if (b.isConnected){ delete b.dataset.armed; b.innerHTML = old; b.classList.remove("armed"); } }, 4000);
     return;
   }
-  b.disabled = true;
-  try {
-    const { app } = await api("update", { key: adm.key, id, op });
-    Object.assign(a, app); renderApps();
-    const msgs = { approve: `Approved. Roster & payment email sent to ${a.email}.`, decline: `Declined. ${a.managerName} has been emailed.`, waitlist: `Waitlisted. ${a.managerName} has been emailed.`, markPaid: a.status === "confirmed" ? "Paid. Team is confirmed and the manager has been emailed." : "Marked paid.", unmarkPaid: "Payment unmarked.", extend: "Deadline extended by 24 hours.", resend: `Email resent to ${a.email}.`, reopen: "Moved back to review." };
-    toast((PREVIEW ? "Preview: " : "") + (msgs[op] || "Updated."));
-  } catch (ex){ toast(ex.message); b.disabled = false; }
+  runOp(id, op, undefined, b);
 }
 
 /* ---------------- Views ---------------- */
@@ -860,8 +979,8 @@ function route(){
   if (t){ showView("roster"); showRoster(t); return; }
   if (location.hash === "#admin" || q.has("admin")){
     showView("admin");
-    const saved = store.get("wwc-key");
-    if (saved && !adm.key){ adm.key = saved; loadApps().then(() => { $("#loginBox").hidden = true; $("#dash").hidden = false; }).catch(() => { adm.key = null; store.set("wwc-key", null); }); }
+    const saved = sessionStore.get();
+    if (saved && !adm.session){ adm.session = saved; loadApps().then(() => showDash(true)).catch(() => signedOut()); }
     return;
   }
   showView("home");
