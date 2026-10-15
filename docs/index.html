@@ -442,7 +442,7 @@ footer a{color:var(--hero-fg)}
             <div><h3>Players</h3><p class="hint" style="margin-top:.4rem">Fill in the table, or upload your approved roster below. Doing both is fine.</p></div>
             <div class="table-scroll">
               <table>
-                <thead><tr><th>#</th><th>Player name</th><th>Jersey</th><th>Birth year</th><th>HCR number</th><th>Goalie</th></tr></thead>
+                <thead><tr><th>#</th><th>Player name</th><th>Jersey</th><th>Birth year</th><th>Goalie</th></tr></thead>
                 <tbody id="playerRows"></tbody>
               </table>
             </div>
@@ -571,7 +571,7 @@ const mock = (() => {
     { ...base, id: "s1", createdAt: iso(now - 30*h), status: "pending", division: "U9 Tier 2", teamName: "Sample Team A", managerName: "Sample Manager A", email: "manager.a@example.com", playerCount: 14, reciprocal: "Yes: Jan 23–25, Example Town, U9 Tier 2", log: "Applied" },
     { ...base, id: "s2", createdAt: iso(now - 50*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team B", managerName: "Sample Manager B", email: "manager.b@example.com", playerCount: 11, tier: "Other – equivalent to Tier 2", approvedAt: iso(now - 2*h), log: "Applied\nStatus → Approved" },
     { ...base, id: "s3", createdAt: iso(now - 70*h), status: "approved", division: "U9 Tier 2", teamName: "Sample Team C", managerName: "Sample Manager C", email: "manager.c@example.com", playerCount: 13, token: "sampletokenc", approvedAt: iso(now - 21*h), approvalEmailSentAt: iso(now - 20*h), deadlineAt: iso(now + 28*h), log: "Applied\nStatus → Approved\nConfirmation email sent (48-hour clock started)" },
-    { ...base, id: "s4", createdAt: iso(now - 120*h), status: "confirmed", division: "U9 Tier 2", teamName: "Sample Team D", managerName: "Sample Manager D", email: "manager.d@example.com", playerCount: 15, token: "sampletokend", approvedAt: iso(now - 91*h), approvalEmailSentAt: iso(now - 90*h), deadlineAt: iso(now - 42*h), rosterSubmittedAt: iso(now - 60*h), rosterJson: { players: [{name:"Example Player", jersey:"9", year:"2018", hcr:"", goalie:false}], staff: [{name:"Sample Coach", role:"Head coach", phone:""}] }, paymentNote: "e-Transfer sent", paidAt: iso(now - 50*h), confirmedAt: iso(now - 50*h), log: "Applied\nStatus → Approved\nConfirmation email sent\nRoster submitted\nMarked paid\nConfirmed" }
+    { ...base, id: "s4", createdAt: iso(now - 120*h), status: "confirmed", division: "U9 Tier 2", teamName: "Sample Team D", managerName: "Sample Manager D", email: "manager.d@example.com", playerCount: 15, token: "sampletokend", approvedAt: iso(now - 91*h), approvalEmailSentAt: iso(now - 90*h), deadlineAt: iso(now - 42*h), rosterSubmittedAt: iso(now - 60*h), rosterJson: { players: [{name:"Example Player", jersey:"9", year:"2018", goalie:false}], staff: [{name:"Sample Coach", role:"Head coach", phone:""}] }, paymentNote: "e-Transfer sent", paidAt: iso(now - 50*h), confirmedAt: iso(now - 50*h), log: "Applied\nStatus → Approved\nConfirmation email sent\nRoster submitted\nMarked paid\nConfirmed" }
   ]};
 })();
 async function mockApi(action, p){
@@ -692,7 +692,6 @@ function playerRow(i, p = {}){
     <td><input type="text" aria-label="Player ${i} name" data-f="name" value="${esc(p.name)}"></td>
     <td class="w-num"><input type="text" inputmode="numeric" aria-label="Player ${i} jersey" data-f="jersey" value="${esc(p.jersey)}"></td>
     <td class="w-year"><input type="text" inputmode="numeric" aria-label="Player ${i} birth year" data-f="year" placeholder="2018" value="${esc(p.year)}"></td>
-    <td><input type="text" aria-label="Player ${i} HCR number" data-f="hcr" value="${esc(p.hcr)}"></td>
     <td><input type="checkbox" aria-label="Player ${i} is a goalie" data-f="goalie" ${p.goalie ? "checked" : ""} style="accent-color:var(--red);width:1.1rem;height:1.1rem"></td></tr>`;
 }
 function staffRow(s = {}){
@@ -908,7 +907,7 @@ function appCard(a){
   }
 
   const r = a.rosterJson;
-  const rosterTable = r?.players?.length ? `<div class="table-scroll" style="margin-top:.6rem"><table><thead><tr><th>#</th><th>Player</th><th>Jersey</th><th>Year</th><th>HCR</th><th>G</th></tr></thead><tbody>${r.players.map((p, i) => `<tr><td class="idx">${i+1}</td><td>${esc(p.name)}</td><td class="num">${esc(p.jersey)}</td><td class="num">${esc(p.year)}</td><td>${esc(p.hcr)}</td><td>${p.goalie ? "G" : ""}</td></tr>`).join("")}</tbody></table></div>` : "";
+  const rosterTable = r?.players?.length ? `<div class="table-scroll" style="margin-top:.6rem"><table><thead><tr><th>#</th><th>Player</th><th>Jersey</th><th>Year</th><th>G</th></tr></thead><tbody>${r.players.map((p, i) => `<tr><td class="idx">${i+1}</td><td>${esc(p.name)}</td><td class="num">${esc(p.jersey)}</td><td class="num">${esc(p.year)}</td><td>${p.goalie ? "G" : ""}</td></tr>`).join("")}</tbody></table></div>` : "";
   const staffList = r?.staff?.length ? r.staff.map(s => `${esc(s.name)} (${esc(s.role)}${s.phone ? ", " + esc(s.phone) : ""})`).join("; ") : "";
   const logHtml = a.log ? `<dt>Activity</dt><dd class="log">${String(a.log).split("\n").reverse().map(esc).join("<br>")}</dd>` : "";
 
