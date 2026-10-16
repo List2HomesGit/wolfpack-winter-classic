@@ -11,7 +11,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
 <style>
-[hidden]{display:none!important}img{max-width:100%}body{margin:0}
 /* Layout: center-ice hero ending on a red line, then a single 72rem column of event info, entry form, and the organizer bench. */
 :root{
   --ice:#F4F6F8; --surface:#FFFFFF; --ink:#111216; --muted:#596070; --line:#D9DEE5; --chip:#EBEEF2;
@@ -115,10 +114,16 @@ section.block{padding-block:clamp(3rem,7vw,5rem)}
 .format li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;border-radius:50%;background:var(--red)}
 .sanction{font:600 .82rem/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .sanction b{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.perks{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;gap:1rem}
-.perks ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem 1.5rem}
-.perks li{display:flex;gap:.75rem;align-items:center;font:800 1.2rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
-.perks svg{width:2.4rem;height:2.4rem;flex:none;padding:.45rem;border-radius:50%;background:color-mix(in srgb,var(--red) 12%,transparent);stroke:var(--red-text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.perks{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;display:grid;grid-template-rows:auto 1fr;gap:1.1rem}
+.perks-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.perks-head h3{margin:0;font:900 1.9rem/1 var(--display);text-transform:uppercase}
+.perks ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}
+.perks li{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.35rem 1rem;align-content:center;background:var(--chip);border-radius:calc(var(--radius) - 2px);padding:1.25rem 1.25rem 1.25rem 1.4rem;overflow:hidden}
+.perks li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--red)}
+.perks li b{align-self:end;font:800 1.35rem/1.05 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.perks li small{grid-column:2;font-size:.92rem;line-height:1.35;color:var(--muted)}
+.perks svg{grid-row:span 2;align-self:center;width:3.25rem;height:3.25rem;flex:none;padding:.7rem;border-radius:50%;background:var(--surface);box-shadow:0 0 0 1px var(--line);stroke:var(--red-text);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:1100px){.perks li{padding:1.5rem 1.5rem 1.5rem 1.65rem}.perks li b{font-size:1.5rem}}
 
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.25rem;counter-reset:step}
 .steps li{counter-increment:step;display:grid;gap:.5rem;align-content:start;padding-top:1rem;border-top:3px solid var(--ink)}
@@ -248,8 +253,6 @@ footer a{color:var(--hero-fg)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media (max-width:860px){.hero-wolf{width:min(70%,15rem)}}
 </style>
-</head>
-<body>
 
 <div class="preview" id="previewBanner" hidden>
   <div class="wrap"><strong>Preview mode.</strong><span>Nothing is saved to the Google Sheet and no emails are sent. Organizer sign-in accepts any password here and shows sample teams.</span></div>
@@ -286,15 +289,15 @@ footer a{color:var(--hero-fg)}
             <span class="tag">4 games guaranteed</span>
           </div>
           <div class="hero-cta">
-            <a class="btn btn-red" href="#apply">Apply to enter</a>
-            <a class="btn btn-ghost-light" href="#how">How entry works</a>
+            <a class="btn btn-red" href="#how">How to Enter</a>
+            <a class="btn btn-ghost-light" href="#apply">Apply Here</a>
           </div>
         </div>
         <div class="hero-side">
         <img class="hero-wolf" src="tournwolf-web.png" alt="Wolfpack Winter Classic logo: a grey wolf wearing a Santa hat" width="443" height="520">
         <div class="board" aria-label="Tournament at a glance">
           <div class="board-row" style="display:block">
-            <div class="board-label">Puck drop in</div>
+            <div class="board-label" style="margin-bottom:.75rem">Puck drops in</div>
             <div class="count" id="countDays">–</div>
             <div class="board-label" id="countUnit" style="margin-top:.4rem">days</div>
           </div>
@@ -321,21 +324,21 @@ footer a{color:var(--hero-fg)}
           <div class="fact"><span class="k">Entry fee</span><span class="v num" id="feeVal">$1,800</span><span class="s">Per team. Due within 48 hours of acceptance.</span></div>
         </div>
         <div class="divisions">
-          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are accepted by the organizing committee.</p><p class="muted">Half-ice, split-squad round robin.</p>
+          <div class="div-card"><div class="tier">U9 <span>Tier 2</span></div><p class="muted" id="spotsT2">Spots are limited. Teams are selected by the organizing committee.</p><p class="muted">Half-ice, split-squad round robin.</p>
             <ul class="format">
               <li><b>4 games</b> guaranteed per team</li>
-              <li>Each team splits into <b>2 even teams</b> and plays on both sides of the ice</li>
+              <li><b>2 games</b> half ice</li>
               <li><b>4v4</b> plus goalies</li>
               <li><b>Hockey Calgary</b> rules</li>
             </ul>
           </div>
           <div class="perks">
-            <span class="eyebrow">Every team gets</span>
+            <div class="perks-head"><h3>Every team gets</h3><span class="eyebrow">Included in entry</span></div>
             <ul>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span>Player awards every game</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0z"/></svg><span>Player swag provided</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="10" cy="15" r="1"/><circle cx="15" cy="15" r="1"/></svg><span>Snacks provided</span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3l7 13a3 3 0 0 0 2.6 1.5H20"/><ellipse cx="18" cy="20.5" rx="3" ry="1.3"/></svg><span>Great competition and hockey</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><b>Player awards every game</b><small>Handed out after every game</small></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 6l2 4 2-1v12h8V9l2 1 2-4-4-3a4 4 0 0 1-8 0z"/></svg><b>Player swag provided</b><small>For every player on the roster</small></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="10" r="1"/><circle cx="10" cy="15" r="1"/><circle cx="15" cy="15" r="1"/></svg><b>Snacks provided</b><small>To keep the kids fuelled</small></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3l7 13a3 3 0 0 0 2.6 1.5H20"/><ellipse cx="18" cy="20.5" rx="3" ry="1.3"/></svg><b>Great competition and hockey</b><small>4 games guaranteed against U9 Tier 2 teams</small></li>
             </ul>
           </div>
         </div>
@@ -349,10 +352,10 @@ footer a{color:var(--hero-fg)}
           <h2>From application to puck drop</h2>
         </div>
         <ol class="steps">
-          <li><h3>Apply</h3><p>The team manager submits the form below. You'll get an email confirming we received it.</p></li>
-          <li><h3>Review</h3><p>The organizing committee reviews applications. Acceptance emails go out by October 25.</p></li>
-          <li><h3>Acceptance</h3><p>If your team is accepted, you'll get an email with a private link to submit your roster and payment details.</p></li>
-          <li><h3>48 hours</h3><p>Pay the $1,800 fee and submit your roster within 48 hours of acceptance to lock in your spot.</p></li>
+          <li><h3>Apply</h3><p>Please submit the form below. You should get an email confirming we have received it.</p></li>
+          <li><h3>Review</h3><p>The organizing committee will review applications, and invitation emails will go out by October 25.</p></li>
+          <li><h3>Invitation</h3><p>If your team is invited, you will receive an email with a private link to submit your roster and payment details.</p></li>
+          <li><h3>48 hours</h3><p>Once your team has received the invitation, you will have 48 hours to lock in your spot.</p></li>
         </ol>
       </div>
     </section>
@@ -640,7 +643,7 @@ function setupPublic(){
   if (CONFIG.VENUE) $("#venueLine").textContent = CONFIG.VENUE;
   if (CONFIG.ENTRY_FEE) $("#feeVal").textContent = CONFIG.ENTRY_FEE;
   const sT2 = CONFIG.SPOTS["U9 Tier 2"];
-  if (sT2) $("#spotsT2").textContent = `${sT2} team spots. Teams are accepted by the organizing committee.`;
+  if (sT2) $("#spotsT2").textContent = `${sT2} team spots. Teams are selected by the organizing committee.`;
   if (sT2) $("#boardSpots").textContent = `${sT2} teams`;
   if (CONFIG.CONTACT_EMAIL){ const c = $("#contactLine"); c.hidden = false; c.innerHTML = `Questions? Email <a href="mailto:${esc(CONFIG.CONTACT_EMAIL)}">${esc(CONFIG.CONTACT_EMAIL)}</a>`; }
   const days = Math.ceil((new Date(CONFIG.START) - Date.now()) / 86400e3);
@@ -1034,4 +1037,5 @@ addEventListener("hashchange", () => { if (location.hash === "#admin") route(); 
 $("#previewBanner").hidden = !PREVIEW;
 setupPublic(); setupRoster(); setupAdmin(); snow(); route();
 </script>
+
 </body></html>
